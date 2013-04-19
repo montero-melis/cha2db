@@ -1,3 +1,6 @@
+# CHAT transcription files
+*.cha
+
 *.py[cod]
 
 # C extensions
