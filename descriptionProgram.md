@@ -1,12 +1,14 @@
-/130416
-/Data extraction and processing
+/130419
+/Data extraction, processing and populating of database
 /G Montero-Melis
 
 
 Outline
 ======
 
-This document describes all the steps needed to obtain a data matrix from the raw data (i.e. transcriptions). It shall serve as a basis to write a program in Python to perform this task. The program has to be general enough so that it can be run on transcriptions in different languages; at the same time it has to be possible to fine-tune certain parameters to adjust to the specific type of input data.
+This document describes all the steps needed to go from the raw data (i.e. transcriptions in .cha format) to the desired output: a populated SQLite database.
+The document serves as a development plan to write a Python program which will perform this task.
+The program has to be general enough so that it can be run on transcriptions in different languages; at the same time it has to be possible to fine-tune certain parameters to adjust to the specific type of input data.
 
 
 Input: raw transcription data
@@ -17,7 +19,7 @@ Content
 
 The transcriptions contain descriptions of 40 different short cartoons showing a character that moves along different paths and landscapes, carrying along different objects.
 Each description typically consists of one sentence of around 10 words. There are descriptions of 80 participants altogether, 40 native speakers of Spanish and 40 native speakers of Swedish. 
-Each transcription is about 150 rows long.
+Each transcription is about 150 rows long (around 6 KB).
 
 
 Form
@@ -55,19 +57,23 @@ Then comes the **body** of the transcription. Here is an example:
 The lines beginning with `@G` announce that a new video is being described. 
 The string that follows these lines (e.g. `tgt_cherue`, l.18) is the ID of the video.
 The three letter code `*EXP:` or `*SUJ:` indicates who is talking, either the experimenter or the participant ("subject").
-Of these two, our program only need extract the lines beginning with `*SUJ:`
+Of these two, our program only need extract the lines beginning with `*SUJ:`.
 
 
-Output: data matrices
-==================
+Output: database in SQLite format
+======================
 
-The desired output are data matrices for each individual transcription, which can then be combined to larger matrices for different groups according to certain criteria. 
+The desired output is a SQLite database.
+Eventually, the objects that we will analyze will often be data matrices for each individual transcription, or combinations of several matrices for different groupings according to certain criteria. 
 For example, we may wish to collapse all data matrices for the Spanish speakers, or all the matrices for women, or all of those who carried out the tasks in a certain order. 
-All of this information is contained in the **headers** and it has therefore to be accessible.
+We refer to the data that will mainly be analysed as **data proper**, while the information that will be used in order to group data from different source we call **metadata**. 
+The former is contained in the body of the transcriptions, the latter in the headers.
+We find that the most efficient way to organise this data is in database format
 
-If we forget about the metadata, the data matrices have **words in their rows** and **videos in their columns**. The individual cells count the frequency with which a certain word is used in the description of a videoclip.
+If we don't take into account the metadata, the data matrices have *words in their rows* and *videos in their columns*.
+The individual cells count the frequency with which a certain word is used in the description of a videoclip.
 
-For the data above this would result in the following matrix:
+For the data above this would result in the following data matrix:
 
 	+-------------+------------+------------+------------+
 	|             | tgt_cherue | pre_pnegro | trd_brocol |
@@ -89,6 +95,14 @@ For the data above this would result in the following matrix:
 	| montaña     |          0 |          0 |          1 |
 	+-------------+------------+------------+------------+
 
+This is the kind of representation we typically will be working on. However, once normalised, the database will not store the information in that way. More on that in the next section.
+
+
+Database structure
+=================
+
+(Write here what tables and relations the db will contain, see googledoc)
+
 
 Steps
 =====
@@ -97,19 +111,19 @@ The steps to get from the raw data to the data matrices are:
 
 1. Extraction of metainformation (headers) and data proper (body)
 2. Data processing: remove noise from the data
-3. Conversion into right tuples
-4. Conversion into matrix form
-5. Combine different matrices
+3. Conversion into right format: tuples and dictionaries
+4. Populate database
+5. Check output, make necessary corrections uin 2. and 3.
 
 
 
-1. Extraction
+1.  Extraction
 ============
 
 
 The basic extraction (or unpickeling) of the data is done by the `CHAunpickle.py` code for Python (see in shared Dropbox folder).
 It is not perfect for the task and needs changes, but it does the basic job.
-The problem now is that it extracts too much information, but since the files are so light, this might not even be a problem. In other words, it might be the right approach to extract *everything* first, and then to get rid of the unwanted information.
+The problem now is that it extracts too much information, but since the files are so lite, this might not even be a problem. In other words, it might be the right approach to extract *everything* first, and then to get rid of the unwanted information.
 
 This is how it works just now. Let this be a sample input:
 
@@ -254,7 +268,7 @@ This will probably have to be solved by using regular expressions on all words c
 
 
 
-3. Conversion into right tuples
+3. Conversion into right format
 ==============================
 
 In order to convert the data into matrix form, we first have to obtain the right tuples.
@@ -284,8 +298,13 @@ For the transcription body as exemplified above, we want to obtain the following
 The matrix will then be obtained by counting in which of the video context each of the words appear (see section Output: data matrices)
 
 
+4. Populate database
+====================
 
-4. Conversion into matrix form
+Here comes text replacing "Conversion into matrix form"
+
+
+4. Conversion into matrix form (SECTION NOT NEEDED ANYMORE!)
 =============================
 
 The matrix form is only one step away. The algorithm might look something like this:
@@ -298,7 +317,14 @@ The matrix form is only one step away. The algorithm might look something like t
 The matrices should be exported into a readable format e.g. CSV.
 
 
-5. Combine different matrices
+
+5. Necessary adjustments and corrections 
+==========================================
+
+This will replace "Combine different matrices"
+
+
+5. Combine different matrices (SECTION NOT NEEDED ANYMORE!)
 ===========================
 
 When we add matrices what will change -- apart from the frequency counts in the cells -- are the unique words, that is, the rows of the matrix. A new word will add a new row with its corresponding row label.
