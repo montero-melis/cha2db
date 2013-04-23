@@ -43,5 +43,5 @@ def print_cha(cha):
     #     print t[0]
     #     print t[1]
 if __name__ == '__main__':
-    cha = cha_unpickle('SpAD_418_pop_or3_ori_INCOMPL.cha')
+    cha = cha_unpickle('SpAD_119_pop_or4_ori.cha')
     print_cha(cha)
