@@ -2,7 +2,9 @@
 /Development plan for cha2db program
 /G Montero-Melis
 
-see Downey (2009, p.176 and p.37)
+This file is still a high-level development plan, but it considers the actual architecture of the Python program.
+
+See Downey (2009, p.176 and p.37)
 
 1. Parse `transcription.cha`
 ========================
