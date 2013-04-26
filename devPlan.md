@@ -6,7 +6,6 @@ This file is still a high-level development plan, but it considers the actual ar
 
 See Downey (2009, p.176 and p.37)
 
-
 1. Parse `transcription.cha`
 ========================
 
