@@ -45,12 +45,46 @@ class CHA:
  
     def pp(self):
         pp(self.cha)
-        
+      
+
+# Take a parsed CHA object as input:
+def arrange(CHAobj):
+    arranged = []
+    
+    # initialize video, role and text variables
+    vid = ""
+    textSuj = ""
+    textExp = ""
+
+    # for now this makes only sense starting AFTER the metainformation,
+    # i.e. when encountering the first @G tuple
+    for tup in CHAobj:
+        if tup[0] == "@G":
+            if vid:
+                arranged.append([vid, "*SUJ", textSuj])
+                arranged.append([vid, "*EXP", textExp])
+                textSuj = ""
+                textExp = ""
+            vid = tup[1]
+        else:           
+            if tup[0] == "*EXP":
+                textExp += " " + tup[1]
+            elif tup[0] == "*SUJ":
+                textSuj += " " + tup[1]
+    return arranged
+
+
 if __name__ == "__main__":    
     file = "SpAD_119_pop_or4_ori.cha"
     
     cha = CHA(file)
     #cha.pp()
 
-for tup in cha.parse():
-	print tup
+# for tup in cha.parse():
+# 	print tup
+
+outp= cha.parse()
+#print outp
+pretp = pprint.PrettyPrinter(indent=4)
+pretp.pprint(arrange(outp))
+#print arrange(outp)
