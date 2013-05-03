@@ -75,6 +75,3 @@ def arrangeMeta(parsedObj):
 				meta['order'] = m.group(2)
 	return meta
 
-
-
-

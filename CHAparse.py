@@ -8,6 +8,8 @@ class CHA:
     def __init__(self, file): 
         self.file = file
         self.parse()
+        self.extract_body()
+        self.extract_meta()
         
     def parse(self):
         cha = []
@@ -40,14 +42,96 @@ class CHA:
                 # continuation of a previous command
                 text += " " + line.strip()
     
-        self.cha = cha
+        self.parsed = cha
+        return self.parsed
  
-    def pp(self):
-        pp(self.cha)
+    
+    def extract_body(self):
+    # works on self.parsed; extracts transcription body
+        body = []
+        
+        # initialize video, role and text variables
+        vid = ""
+        textSuj = ""
+        textExp = ""
+    
+        # for now this makes only sense starting AFTER the metainformation,
+        # i.e. when encountering the first @G tuple
+        for tup in self.parsed:
+            c_key = tup[0]
+            c_val = tup[1]    # CAMBIAR TODAS LAS OCURRENCIAS!
+            if c_key == "@G":
+                if vid:
+                    body.append([vid, "*SUJ", textSuj])
+                    body.append([vid, "*EXP", textExp])
+                    textSuj = ""
+                    textExp = ""
+                vid = c_val
+            else:           
+                if c_key == "*EXP":
+                    textExp += " " + c_val
+                elif c_key == "*SUJ":
+                    textSuj += " " + c_val
+                    
+        self.extracted_body = body
+        return self.extracted_body
+    
+    
+    ## Metainformation
+    def extract_meta(self):
+        meta = dict()
+        #These are the dictionary keys extracted from the transcription header:
+            # 'lang_interact': language of interaction
+            # 'ppt_name': participant name
+            # 'ppt_role': participant role
+            # 'ppt_gender': gender of participant
+            # 'ppt_group': group of the participant
+            # 'exp_name': experimenter name
+            # 'transcr': name of transcriber
+            # 'order': one of th*e four semi-randomized orders in which the videoclips were shown
+    
+        for tup in self.parsed:
+            c_key = tup[0]
+            c_val = tup[1]    # CAMBIAR TODAS LAS OCURRENCIAS!
+            # Check language of interaction
+            if c_key == '@Languages':
+                meta['lang_interact'] = c_val
+            # Check participants' names and roles
+            elif c_key == '@Participants':
+                listParticipants = c_val.split(",")
+                for field in listParticipants:
+                    if field.split()[0] == "SUJ":
+                        meta['ppt_name'] = field.split()[1] # participant name
+                        meta['ppt_role'] = field.split()[2] # participant role
+                    elif field.split()[0] == "EXP":
+                        meta['exp_name'] = field.split()[1] #experimenter name
+            # Check other information about participants
+            elif c_key == '@ID':
+                listID = c_val.split("|")
+                # split c_val by pipes '|' and create list whose elements are each field before a pipe
+                if listID[2] == 'SUJ':
+                    meta['ppt_gender'] = listID[4]
+                    meta['ppt_group'] = listID[5]
+                elif listID[2] == 'EXP':
+                    meta['exp_gender'] = listID[4]
+            # check transcriber's name
+            elif c_key == '@Transcriber':
+                meta['transcr'] = c_val
+            # check order in which the videos where shown (1--4)
+            elif c_key == '@Comment':
+                r_order = re.compile(r"ord(er)? *0?([1-4])", re.I)
+                m = r_order.match(c_val)
+                if m:
+                    meta['order'] = m.group(2)
+                    
+        self.extracted_meta = meta
+        return self.extracted_meta
+    
         
 if __name__ == "__main__":    
     file = "SpAD_119_pop_or4_ori.cha"
     
-    cha = CHA(file)
-    cha.pp()
+    cha = CHA(file)      
+    pp(cha.extracted_meta)
+    pp(cha.extracted_body)
     
