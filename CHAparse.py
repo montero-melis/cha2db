@@ -7,11 +7,11 @@ pp = pprint.PrettyPrinter(indent=4).pprint
 class CHA:
     def __init__(self, file): 
         self.file = file
-        self.parse()
-        self.extract_body()
-        self.extract_meta()
+        self.extract()
+        self.parse_body()
+        self.parse_meta()
         
-    def parse(self):
+    def extract(self):
         cha = []
         f = open(self.file)
     
@@ -42,12 +42,12 @@ class CHA:
                 # continuation of a previous command
                 text += " " + line.strip()
     
-        self.parsed = cha
-        return self.parsed
+        self.extracted = cha
+        return self.extracted
  
     
-    def extract_body(self):
-    # works on self.parsed; extracts transcription body
+    def parse_body(self):
+    # works on self.extracted; parses transcription body
         body = []
         
         # initialize video, role and text variables
@@ -57,7 +57,7 @@ class CHA:
     
         # for now this makes only sense starting AFTER the metainformation,
         # i.e. when encountering the first @G tuple
-        for tup in self.parsed:
+        for tup in self.extracted:
             c_key = tup[0]
             c_val = tup[1]    # CAMBIAR TODAS LAS OCURRENCIAS!
             if c_key == "@G":
@@ -73,14 +73,14 @@ class CHA:
                 elif c_key == "*SUJ":
                     textSuj += " " + c_val
                     
-        self.extracted_body = body
-        return self.extracted_body
+        self.parsed_body = body
+        return self.parsed_body
     
     
     ## Metainformation
-    def extract_meta(self):
+    def parse_meta(self):
         meta = dict()
-        #These are the dictionary keys extracted from the transcription header:
+        #These are the dictionary keys parsed from the transcription header:
             # 'lang_interact': language of interaction
             # 'ppt_name': participant name
             # 'ppt_role': participant role
@@ -90,7 +90,7 @@ class CHA:
             # 'transcr': name of transcriber
             # 'order': one of th*e four semi-randomized orders in which the videoclips were shown
     
-        for tup in self.parsed:
+        for tup in self.extracted:
             c_key = tup[0]
             c_val = tup[1]    # CAMBIAR TODAS LAS OCURRENCIAS!
             # Check language of interaction
@@ -124,14 +124,14 @@ class CHA:
                 if m:
                     meta['order'] = m.group(2)
                     
-        self.extracted_meta = meta
-        return self.extracted_meta
+        self.parsed_meta = meta
+        return self.parsed_meta
     
         
 if __name__ == "__main__":    
     file = "SpAD_119_pop_or4_ori.cha"
     
     cha = CHA(file)      
-    pp(cha.extracted_meta)
-    pp(cha.extracted_body)
+    pp(cha.parsed_meta)
+    pp(cha.parsed_body)
     
