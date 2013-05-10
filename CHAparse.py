@@ -124,7 +124,7 @@ class CHA:
                     textExp += " " + c_val
                 elif c_key == "*SUJ":
                     textSuj += " " + c_val
-        if vid:
+        if vid: # Make sure the last tuple finds its way into the list 'body'
             body.append([vid, "*SUJ", textSuj])
             body.append([vid, "*EXP", textExp])
 
