@@ -4,6 +4,7 @@ import re
 import pprint
 pp = pprint.PrettyPrinter(indent=4).pprint
 
+
 class CHA:
     def __init__(self, file): 
         self.file = file
@@ -11,6 +12,7 @@ class CHA:
         self.parse_meta()
         self.parse_body()
         
+
     def extract(self):
         cha = []
         f = open(self.file)
@@ -31,7 +33,7 @@ class CHA:
                 # is there an old command and text to be appended?
                 if text and command:
                     # remove NAK
-                    text = re.sub("\x15.*?\x15","",text).strip()
+                    text = re.sub("\x15.*?\x15","",text).strip() # TODO: move this to process_body method
                     cha.append((command,text))
     
                 m = r_command_text.match(line)
@@ -97,7 +99,6 @@ class CHA:
         self.parsed_meta = meta
         return self.parsed_meta
     
- 
     
     def parse_body(self):
     # works on self.extracted; parses transcription body
@@ -111,7 +112,7 @@ class CHA:
         for tup in self.extracted:
             c_key = tup[0]
             c_val = tup[1]
-            if c_key == "@G" or c_key:
+            if c_key == "@G":
                 if vid:
                     body.append([vid, "*SUJ", textSuj])
                     body.append([vid, "*EXP", textExp])
@@ -123,12 +124,14 @@ class CHA:
                     textExp += " " + c_val
                 elif c_key == "*SUJ":
                     textSuj += " " + c_val
+        if vid:
+            body.append([vid, "*SUJ", textSuj])
+            body.append([vid, "*EXP", textExp])
+
                     
         self.parsed_body = body
         return self.parsed_body
     
-    
-
         
 if __name__ == "__main__":    
     file = "SpAD_119_pop_or4_ori.cha"
