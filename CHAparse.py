@@ -8,8 +8,8 @@ class CHA:
     def __init__(self, file): 
         self.file = file
         self.extract()
-        self.parse_body()
         self.parse_meta()
+        self.parse_body()
         
     def extract(self):
         cha = []
@@ -44,39 +44,8 @@ class CHA:
     
         self.extracted = cha
         return self.extracted
- 
-    
-    def parse_body(self):
-    # works on self.extracted; parses transcription body
-        body = []
-        
-        # initialize video, role and text variables
-        vid = ""
-        textSuj = ""
-        textExp = ""
-    
-        # for now this makes only sense starting AFTER the metainformation,
-        # i.e. when encountering the first @G tuple
-        for tup in self.extracted:
-            c_key = tup[0]
-            c_val = tup[1]    # CAMBIAR TODAS LAS OCURRENCIAS!
-            if c_key == "@G":
-                if vid:
-                    body.append([vid, "*SUJ", textSuj])
-                    body.append([vid, "*EXP", textExp])
-                    textSuj = ""
-                    textExp = ""
-                vid = c_val
-            else:           
-                if c_key == "*EXP":
-                    textExp += " " + c_val
-                elif c_key == "*SUJ":
-                    textSuj += " " + c_val
-                    
-        self.parsed_body = body
-        return self.parsed_body
-    
-    
+
+
     ## Metainformation
     def parse_meta(self):
         meta = dict()
@@ -89,6 +58,7 @@ class CHA:
             # 'exp_name': experimenter name
             # 'transcr': name of transcriber
             # 'order': one of th*e four semi-randomized orders in which the videoclips were shown
+            # TODO: add other comment keys (comment1, comment2 etc for other comments in transcriptions)
     
         for tup in self.extracted:
             c_key = tup[0]
@@ -127,6 +97,38 @@ class CHA:
         self.parsed_meta = meta
         return self.parsed_meta
     
+ 
+    
+    def parse_body(self):
+    # works on self.extracted; parses transcription body
+        body = []
+        
+        # initialize video, role and text variables
+        vid = ""
+        textSuj = ""
+        textExp = ""
+    
+        for tup in self.extracted:
+            c_key = tup[0]
+            c_val = tup[1]
+            if c_key == "@G" or c_key:
+                if vid:
+                    body.append([vid, "*SUJ", textSuj])
+                    body.append([vid, "*EXP", textExp])
+                    textSuj = ""
+                    textExp = ""
+                vid = c_val
+            else:           
+                if c_key == "*EXP":
+                    textExp += " " + c_val
+                elif c_key == "*SUJ":
+                    textSuj += " " + c_val
+                    
+        self.parsed_body = body
+        return self.parsed_body
+    
+    
+
         
 if __name__ == "__main__":    
     file = "SpAD_119_pop_or4_ori.cha"
