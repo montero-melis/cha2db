@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 
 import re
+import copy
 import pprint
 pp = pprint.PrettyPrinter(indent=4).pprint
 
@@ -134,10 +135,10 @@ class CHA:
 
 
     def process_body(self):
-        body = self.parsed_body[:] # Create copy of object to maintain independence of attributes
+        body = copy.deepcopy(self.parsed_body)  # Create copy of object instead of creating binding
 
         # regexes to match repetitions ("[/]") and retracings ("[//]") with all their scoped text
-        # the scope is either the preceding "<...>" or the preceding word
+        # their scope is either the preceding "<...>" or the preceding word
         reg_repet = re.compile(r"<[^>]+>\s*\[\/\]|\w+\s*\[\/\]")    # repetitions
         reg_retra = re.compile(r"<[^>]+>\s*\[\/\/\]|\w+\s*\[\/\/\]")    # retracings
 
