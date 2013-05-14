@@ -135,6 +135,7 @@ class CHA:
 
 
     def process_body(self):
+    # Does all necessary text processing to remove noise
         body = copy.deepcopy(self.parsed_body)  # Create copy of object instead of creating binding
 
         # regexes to match repetitions ("[/]") and retracings ("[//]") with all their scoped text
