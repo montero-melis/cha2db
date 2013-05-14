@@ -1,6 +1,9 @@
 *.pdf
 
+
 *.py[cod]
+output.txt
+
 
 # C extensions
 *.so
