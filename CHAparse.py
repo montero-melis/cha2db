@@ -11,6 +11,7 @@ class CHA:
         self.extract()
         self.parse_meta()
         self.parse_body()
+        self.process_body()
         
 
     def extract(self):
@@ -32,7 +33,7 @@ class CHA:
     
                 # is there an old command and text to be appended?
                 if text and command:
-                    text = text.strip() # TODO: move this to process_body method
+                    text = text.strip()
                     cha.append((command,text))
     
                 m = r_command_text.match(line)
@@ -130,12 +131,28 @@ class CHA:
                     
         self.parsed_body = body
         return self.parsed_body
-    
+
+
+    def process_body(self):
+        body = self.parsed_body
+
+        for descr in body: # for each description
+            text = descr[2]
+            
+            text = re.sub("\x15.*?\x15","",text) # remove NAK (sound bullets)
+            # strip all white spaces
+            
+            descr[2] = text # replace description slot with processed string
         
+        self.processed_body = body
+        return self.processed_body
+
+
 if __name__ == "__main__":    
     file = "SpAD_119_pop_or4_ori.cha"
     
     cha = CHA(file)      
     pp(cha.parsed_meta)
     pp(cha.parsed_body)
+    #pp(cha.processed_body)
     
