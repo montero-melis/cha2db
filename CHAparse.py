@@ -32,8 +32,7 @@ class CHA:
     
                 # is there an old command and text to be appended?
                 if text and command:
-                    # remove NAK
-                    text = re.sub("\x15.*?\x15","",text).strip() # TODO: move this to process_body method
+                    text = text.strip() # TODO: move this to process_body method
                     cha.append((command,text))
     
                 m = r_command_text.match(line)
