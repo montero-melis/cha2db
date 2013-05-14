@@ -19,7 +19,7 @@ class CHA:
         f = open(self.file)
     
         # Regular expression to extract command and text
-        r_command_text = re.compile("^(.*?):(.*)$")
+        reg_command_text = re.compile("^(.*?):(.*)$")
     
         # initialize text and command
         command = ""
@@ -36,7 +36,7 @@ class CHA:
                     text = text.strip()
                     cha.append((command,text))
     
-                m = r_command_text.match(line)
+                m = reg_command_text.match(line)
                 if m:
                     command = m.group(1).strip()
                     text = m.group(2).strip()
@@ -91,8 +91,8 @@ class CHA:
                 meta['transcr'] = c_val
             # check order in which the videos where shown (1--4)
             elif c_key == '@Comment':
-                r_order = re.compile(r"ord(er)? *0?([1-4])", re.I)
-                m = r_order.match(c_val)
+                reg_order = re.compile(r"ord(er)? *0?([1-4])", re.I)
+                m = reg_order.match(c_val)
                 if m:
                     meta['order'] = m.group(2)
                     
@@ -136,11 +136,21 @@ class CHA:
     def process_body(self):
         body = self.parsed_body
 
+        # regexes to match repetitions ("[/]") and retracings ("[//]") with all their scoped text
+        # the scope is either the preceding "<...>" or the preceding word
+        reg_repet = re.compile(r"<[^>]+>\s*\[\/\]|\w+\s*\[\/\]")    # repetitions
+        reg_retra = re.compile(r"<[^>]+>\s*\[\/\/\]|\w+\s*\[\/\/\]")    # retracings
+
         for descr in body: # for each description
             text = descr[2]
             
-            text = re.sub("\x15.*?\x15","",text) # remove NAK (sound bullets)
-            # strip all white spaces
+            text = re.sub("\x15.*?\x15","",text)    # remove NAK (sound bullets)
+            text = re.sub("\+<","",text)            # remove "lazy" overlapping markers "+<"
+            text = re.sub(reg_repet,"",text)    # rm repetitions (marked by "[/]")
+            text = re.sub(reg_retra,"",text)    # rm retracings (marked by "[//]")
+
+            # remove all repeated white spaces
+            # strip all white spaces from beginning and end of line
             
             descr[2] = text # replace description slot with processed string
         
