@@ -149,8 +149,11 @@ class CHA:
             text = re.sub("\(\.\)","",text)         # remove pauses "(.)"
             text = re.sub(reg_repet,"",text)        # rm repetitions (marked by "[/]")
             text = re.sub(reg_retra,"",text)        # rm retracings (marked by "[//]")
-            # remove all repeated white spaces
-            # strip all white spaces from beginning and end of line
+            text = re.sub(r"&=?.+?\b|\bxxx\b|\bx\b","", text)    # rm phonological fragments and unidentified speech
+            text = re.sub(r"\+\.\.[.?]","", text)   # rm trailing offs ("+..." or "+..?")
+            text = re.sub("[?.:!]","", text)        # rm punctuation marks
+            text = re.sub("\s\s+" , " ", text)      # remove all repeated white spaces
+            text = text.strip()                     # strip all white spaces from beginning and end of line
             
             descr[2] = text # replace description slot with processed string
         
@@ -163,6 +166,6 @@ if __name__ == "__main__":
     
     cha = CHA(file)      
     pp(cha.parsed_meta)
-    pp(cha.parsed_body)
-    #pp(cha.processed_body)
+    #pp(cha.parsed_body)
+    pp(cha.processed_body)
     
