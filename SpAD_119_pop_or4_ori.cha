@@ -152,6 +152,7 @@
 @G:	pge_tabmai
 *EXP:	si ? 628756_630971
 *SUJ:	Popi ha entrado en una casa con una mesa . 630889_633514
+@G:	closing
 *EXP:	muy bien vale .
 *EXP:	puedes cubrir la pantalla ? 633842_640978
 @End
