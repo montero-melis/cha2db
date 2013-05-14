@@ -134,7 +134,7 @@ class CHA:
 
 
     def process_body(self):
-        body = self.parsed_body
+        body = self.parsed_body[:] # Create copy of object to maintain independence of attributes
 
         # regexes to match repetitions ("[/]") and retracings ("[//]") with all their scoped text
         # the scope is either the preceding "<...>" or the preceding word
@@ -146,9 +146,9 @@ class CHA:
             
             text = re.sub("\x15.*?\x15","",text)    # remove NAK (sound bullets)
             text = re.sub("\+<","",text)            # remove "lazy" overlapping markers "+<"
-            text = re.sub(reg_repet,"",text)    # rm repetitions (marked by "[/]")
-            text = re.sub(reg_retra,"",text)    # rm retracings (marked by "[//]")
-
+            text = re.sub("\(\.\)","",text)         # remove pauses "(.)"
+            text = re.sub(reg_repet,"",text)        # rm repetitions (marked by "[/]")
+            text = re.sub(reg_retra,"",text)        # rm retracings (marked by "[//]")
             # remove all repeated white spaces
             # strip all white spaces from beginning and end of line
             
