@@ -1,5 +1,11 @@
+import os
 import sqlite3
-conn = sqlite3.connect('cha.db')
+
+DB = "cha.db"
+
+os.remove(DB)
+conn = sqlite3.connect(DB)
+
 c = conn.cursor()
 
 # 1. Schema
