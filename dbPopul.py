@@ -3,7 +3,11 @@ import sqlite3
 
 DB = "cha.db"
 
-os.remove(DB)
+try:
+    os.remove(DB)
+except:
+    pass
+    
 conn = sqlite3.connect(DB)
 
 c = conn.cursor()
