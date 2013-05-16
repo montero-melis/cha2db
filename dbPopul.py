@@ -42,5 +42,6 @@ if row is not None:
 else:
     c.execute('INSERT INTO experimenter VALUES (NULL, ?, ?)', (m["exp_name"], id_lang_interact))
     id_experimenter = c.lastrowid
-   
-# and so forth...
+
+conn.commit()
+conn.close()
