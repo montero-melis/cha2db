@@ -19,33 +19,25 @@ c = conn.cursor()
 # Tables created for normalization (look-up)
 c.execute('''CREATE TABLE IF NOT EXISTS Language (lang_id INTEGER PRIMARY KEY, language TEXT)''')
 c.execute('''CREATE TABLE IF NOT EXISTS Gender (gend_id INTEGER PRIMARY KEY, gender TEXT)''')
-c.execute('''CREATE TABLE IF NOT EXISTS PartGroup (grou_id INTEGER PRIMARY KEY, partGroup TEXT)''')
+c.execute('''CREATE TABLE IF NOT EXISTS PartGroup (group_id INTEGER PRIMARY KEY, partGroup TEXT)''')
 c.execute('''CREATE TABLE IF NOT EXISTS Profile (prof_id INTEGER PRIMARY KEY, profile TEXT)''')
 c.execute('''CREATE TABLE IF NOT EXISTS Condition (cond_id INTEGER PRIMARY KEY, condition TEXT)''')
 
-# Tables with interesting relations
 
+## Tables with interesting relations
+
+# Experimenter
 c.execute('''CREATE TABLE IF NOT EXISTS Experimenter(
     expe_id INTEGER PRIMARY KEY,
     name TEXT,
     gender INTEGER,
-    L1 INTEGER
+    L1 INTEGER,
+    FOREIGN KEY(gender) REFERENCES Gender(gend_id),
+    FOREIGN KEY(L1) REFERENCES Language(lang_id)
     )'''
 )
 
-
-# # Syntax error for this:
-# c.execute('''CREATE TABLE IF NOT EXISTS Experimenter(
-#     expe_id INTEGER PRIMARY KEY,
-#     name TEXT,
-#     gender INTEGER,
-#     FOREIGN KEY(gender) REFERENCES Gender(gend_id),
-#     L1 INTEGER
-#     FOREIGN KEY(L1) REFERENCES Language(lang_id)
-#     )'''
-# )
-
-# Syntax error for this:
+# Participant
 c.execute('''CREATE TABLE IF NOT EXISTS Participant(
     part_id INTEGER PRIMARY KEY,
     name TEXT,
@@ -53,50 +45,28 @@ c.execute('''CREATE TABLE IF NOT EXISTS Participant(
     L1 INTEGER,
     partGroup INTEGER,
     age REAL,
-    OQPTscore INTEGER
+    OQPTscore INTEGER,
+    FOREIGN KEY(gender) REFERENCES Gender(gend_id),
+    FOREIGN KEY(L1) REFERENCES Language(lang_id)
     )'''
 )
 
-# # Syntax error for this:
-# c.execute('''CREATE TABLE IF NOT EXISTS Participant(
-#     part_id INTEGER PRIMARY KEY,
-#     name TEXT,
-#     gender INTEGER,
-#     FOREIGN KEY(gender) REFERENCES Gender(gend_id),
-#     L1 INTEGER,
-#     FOREIGN KEY(L1) REFERENCES Language(lang_id),    
-#     age REAL,
-#     OQPTscore INTEGER)
-#     )'''
-# )
-
+# Interaction
 c.execute('''CREATE TABLE IF NOT EXISTS Interaction(
     inte_id INTEGER PRIMARY KEY,
     partName INTEGER,
     expeName INTEGER,
-    langInteraction INTEGER,    
+    langInteraction INTEGER,
     orderLing INTEGER,
     profile INTEGER,
-    condition INTEGER
+    condition INTEGER,
+    FOREIGN KEY(partName) REFERENCES Participant(part_id),    
+    FOREIGN KEY(expeName) REFERENCES Experimenter(expe_id),    
+    FOREIGN KEY(langInteraction) REFERENCES Language(lang_id),  
+    FOREIGN KEY(profile) REFERENCES Profile(prof_id),
+    FOREIGN KEY(condition) REFERENCES Condition(cond_id)
     )'''
 )
-
-# # Syntax error for this:
-# c.execute('''CREATE TABLE IF NOT EXISTS Interaction(
-#     inte_id INTEGER PRIMARY KEY,
-#     partName INTEGER,
-#     FOREIGN KEY(partName) REFERENCES Participant(part_id),
-#     expeName INTEGER,
-#     FOREIGN KEY(expeName) REFERENCES Experimenter(expe_id),
-#     langInteraction INTEGER,    
-#     FOREIGN KEY(langInteraction) REFERENCES Language(lang_id),
-#     orderLing INTEGER,
-#     profile INTEGER,
-#     FOREIGN KEY(profile) REFERENCES Profile(prof_id),
-#     condition INTEGER,
-#     FOREIGN KEY(condition) REFERENCES Condition(cond_id)
-#     )'''
-# )
 
 
 ## 2. Inserts SQL statements
@@ -140,18 +110,18 @@ else:
     c.execute('INSERT INTO Gender VALUES (NULL,?)', (m["ppt_gender"],))
     part_gender_id = c.lastrowid
 # participant group
-c.execute('SELECT grou_id FROM PartGroup WHERE partGroup = ?', (m["ppt_group"],))
+c.execute('SELECT group_id FROM PartGroup WHERE partGroup = ?', (m["ppt_group"],))
 row = c.fetchone()
 if row is not None:
-    part_grou_id = row[0]
+    part_group_id = row[0]
 else:
     c.execute('INSERT INTO PartGroup VALUES (NULL,?)', (m["ppt_group"],))
-    part_grou_id = c.lastrowid
+    part_group_id = c.lastrowid
 # participant name
 part_name = m["ppt_name"]
 # participant role: not inserted into db since this info is alread covered as 'participant group'
 # populate Participant table
-c.execute('INSERT INTO Participant VALUES (NULL,?,?,NULL,?,NULL,NULL)', (part_name, part_gender_id, part_grou_id))
+c.execute('INSERT INTO Participant VALUES (NULL,?,?,NULL,?,NULL,NULL)', (part_name, part_gender_id, part_group_id))
 part_name_id = c.lastrowid
 
 
