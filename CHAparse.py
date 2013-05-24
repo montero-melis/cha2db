@@ -163,11 +163,11 @@ class CHA:
         return self.processed_body
 
 
-if __name__ == "__main__":    
-    file = "SpAD_119_pop_or4_ori.cha"
+# if __name__ == "__main__":    
+#     file = "SpAD_119_pop_or4_ori.cha"
     
-    cha = CHA(file)      
-    pp(cha.parsed_meta)
-    #pp(cha.parsed_body)
-    pp(cha.processed_body)
+#     cha = CHA(file)      
+#     pp(cha.parsed_meta)
+#     #pp(cha.parsed_body)
+#     pp(cha.processed_body)
     
