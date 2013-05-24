@@ -7,10 +7,10 @@ def dbPopul(dbName, metainfo, body):
     DB = dbName
 
     # Delete and create anew until the function works as expected
-    try:
-        os.remove(DB)
-    except:
-        print "Couldn't delete database"
+    # try:
+    #     os.remove(DB)
+    # except:
+    #     print "Couldn't delete database"
         
     conn = sqlite3.connect(DB)
     c = conn.cursor()
