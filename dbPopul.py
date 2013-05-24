@@ -22,6 +22,9 @@ c.execute('''CREATE TABLE IF NOT EXISTS Gender (gend_id INTEGER PRIMARY KEY, gen
 c.execute('''CREATE TABLE IF NOT EXISTS PartGroup (group_id INTEGER PRIMARY KEY, partGroup TEXT)''')
 c.execute('''CREATE TABLE IF NOT EXISTS Profile (prof_id INTEGER PRIMARY KEY, profile TEXT)''')
 c.execute('''CREATE TABLE IF NOT EXISTS Condition (cond_id INTEGER PRIMARY KEY, condition TEXT)''')
+c.execute('''CREATE TABLE IF NOT EXISTS Videos (video_id INTEGER PRIMARY KEY, videoname TEXT)''')
+c.execute('''CREATE TABLE IF NOT EXISTS Words (word_id INTEGER PRIMARY KEY, word TEXT, language INTEGER)''')
+
 
 
 ## Tables with interesting relations
@@ -68,6 +71,15 @@ c.execute('''CREATE TABLE IF NOT EXISTS Interaction(
     )'''
 )
 
+# DescrMatrix
+c.execute('''CREATE TABLE IF NOT EXISTS DescrMatrix(
+    interaction INTEGER,
+    video INTEGER,
+    role TEXT,
+    word INTEGER
+    )'''
+)
+
 
 ## 2. Inserts SQL statements
 
@@ -80,6 +92,26 @@ m = {   'exp_gender': 'male',
     'ppt_name': 'Spanish_Native_119',
     'ppt_role': 'Target_Adult',
     'transcr': 'guillermo'}
+
+
+t = [[   'tre_cadgro',
+        '*SUJ',
+        'Popi ha ido paseando con el carrito de la compra hasta la cueva'],
+    [   'tre_cadgro',
+        '*EXP',
+        'Popi, carrito de la compra, una cueva qu\xc3\xa9 ha ocurrido'],
+    [   'tgd_malcol',
+        '*SUJ',
+        'pues Popi ha bajado una colina arrastrando un ba\xc3\xbal'],
+    [   'tgd_malcol',
+        '*EXP',
+        'Popi, un ba\xc3\xbal, una colina qu\xc3\xa9 ha ocurrido'],
+    ['prm_boutoi', '*SUJ', 'Popi ha subido un tejado empujando un flotador'],
+    [   'prm_boutoi',
+        '*EXP',
+        'Popi, un flotador, un tejado qu\xc3\xa9 ha ocurrido'],
+    ['dis_avarou', '*SUJ', 'una bola azul ha empujado una bola roja']]
+
 
 
 ## Experimenter table and indexes -- add only a row to this table if new experimenter!
@@ -139,6 +171,34 @@ orderLing = m["order"]
 # Populate Interaction table
 c.execute('INSERT INTO Interaction VALUES (NULL,?,?,?,?,NULL,NULL)', (part_name_id, expe_name_id, interaction_lang_id, orderLing))
 interaction_id = c.lastrowid
+
+
+## DescrMatrix table
+for turn in t: # Each turn refers to what each participant (subject, experimenter) says for each description
+    # Parse video (turn[0]), enter it to Videos if necessary, and keep its id as a variable video_id
+    c.execute('SELECT video_id FROM Videos WHERE videoname = ?', (turn[0],))
+    row = c.fetchone()
+    if row is not None:
+        video_id = row[0]
+    else:
+        c.execute('INSERT INTO Videos VALUES (NULL, ?)', (turn[0],))
+        video_id = c.lastrowid    
+    # Update variable 'role' with value turn[1]
+    role = turn[1]
+    # For each word in turn[2] (use split method!):
+    for eachword in turn[2].split():
+        # Parse each word, enter into Words if necessary, keep it id as variable word_id
+        c.execute('SELECT word_id FROM Words WHERE word = ?', (unicode(eachword, 'utf-8'),))
+        row = c.fetchone()
+        if row is not None:
+            word_id = row[0]
+        else:
+            c.execute('INSERT INTO Words VALUES (NULL, ?, NULL)', (unicode(eachword, 'utf-8'),))
+            word_id = c.lastrowid    
+        # Insert into DescrMatrix : (inte_id, video_id, role, )
+        c.execute('INSERT INTO DescrMatrix VALUES (?,?,?,?)', (interaction_id, video_id, role, word_id))
+
+
 
 
 conn.commit()
