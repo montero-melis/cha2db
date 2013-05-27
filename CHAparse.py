@@ -149,11 +149,12 @@ class CHA:
             text = re.sub("\x15.*?\x15","",text)    # remove NAK (sound bullets)
             text = re.sub("\+<","",text)            # remove "lazy" overlapping markers "+<"
             text = re.sub("\(\.\)","",text)         # remove pauses "(.)"
+            text = re.sub(":","", text)             # remove lengthenings ":"
             text = re.sub(reg_repet,"",text)        # rm repetitions (marked by "[/]")
             text = re.sub(reg_retra,"",text)        # rm retracings (marked by "[//]")
             text = re.sub(r"&=?.+?\b|\bxxx\b|\bx\b","", text)    # rm phonological fragments and unidentified speech
             text = re.sub(r"\+\.\.[.?]","", text)   # rm trailing offs ("+..." or "+..?")
-            text = re.sub("[?.:!]","", text)        # rm punctuation marks
+            text = re.sub("[?.!]","", text)         # rm punctuation marks
             text = re.sub("\s\s+" , " ", text)      # remove all repeated white spaces
             text = text.strip()                     # strip all white spaces from beginning and end of line
             
@@ -163,11 +164,12 @@ class CHA:
         return self.processed_body
 
 
-# if __name__ == "__main__":    
-#     file = "SpAD_119_pop_or4_ori.cha"
+if __name__ == "__main__":    
+    file = "SpAD_122_pop_or1_ori_INCOMPL.cha"
     
-#     cha = CHA(file)      
-#     pp(cha.parsed_meta)
-#     #pp(cha.parsed_body)
-#     pp(cha.processed_body)
+    cha = CHA(file)      
+    # pp(cha.extracted)
+    # pp(cha.parsed_meta)
+    # pp(cha.parsed_body)
+    pp(cha.processed_body)
     

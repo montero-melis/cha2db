@@ -6,7 +6,7 @@ def dbPopul(dbName, metainfo, body):
 
     DB = dbName
 
-    # Delete and create anew until the function works as expected
+    # # Delete and create anew until the function works as expected
     # try:
     #     os.remove(DB)
     # except:
