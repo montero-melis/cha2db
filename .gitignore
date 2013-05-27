@@ -1,9 +1,21 @@
 *.pdf
 
+# DB
+cha.db
+
+*.cha
 
 *.py[cod]
+
 output.txt
 
+sql_statements.txt
+
+
+
+
+
+## Defaults
 
 # C extensions
 *.so
@@ -38,8 +50,3 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
-
-# DB
-cha.db
-
-*.cha
