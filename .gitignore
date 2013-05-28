@@ -9,7 +9,7 @@ cha.db
 
 output.txt
 
-sql_statements.txt
+*.sql
 
 
 
