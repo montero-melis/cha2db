@@ -1,5 +1,5 @@
 from CHAparse import *
-from dbPopul_funct import *
+from dbPopul import *
 from os import *
 
 
