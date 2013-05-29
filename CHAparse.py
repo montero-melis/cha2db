@@ -93,7 +93,7 @@ class CHA:
             # check order in which the videos where shown (1--4)
             elif c_key == '@Comment':
                 reg_order = re.compile(r"ord(er)? *0?([1-4])", re.I)
-                m = reg_order.match(c_val)
+                m = reg_order.search(c_val)
                 if m:
                     meta['order'] = m.group(2)
                     
@@ -164,12 +164,12 @@ class CHA:
         return self.processed_body
 
 
-if __name__ == "__main__":    
-    file = "SpAD_122_pop_or1_ori_INCOMPL.cha"
+# if __name__ == "__main__":    
+#     file = "SwAD_701_pop_or1_ori.cha"
     
-    cha = CHA(file)      
-    # pp(cha.extracted)
-    # pp(cha.parsed_meta)
-    # pp(cha.parsed_body)
-    pp(cha.processed_body)
+#     # cha = CHA(file)      
+#     # pp(cha.extracted)
+#     # pp(cha.parsed_meta)
+#     # pp(cha.parsed_body)
+#     # pp(cha.processed_body)
     
