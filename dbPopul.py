@@ -166,12 +166,12 @@ def dbPopul(dbName, metainfo, body):
         # For each word in turn[2] (use split method!):
         for eachword in turn[2].split():
             # Parse each word, enter into Words if necessary, keep it id as variable word_id
-            c.execute('SELECT id FROM Words WHERE word = ? AND language_id = ?', (unicode(eachword, 'utf-8'), interaction_lang_id))
+            c.execute('SELECT id FROM Words WHERE word = ? AND language_id = ?', (eachword, interaction_lang_id))
             row = c.fetchone()
             if row is not None:
                 word_id = row[0]
             else:
-                c.execute('INSERT INTO Words VALUES (NULL, ?, ?)', (unicode(eachword, 'utf-8'), interaction_lang_id))
+                c.execute('INSERT INTO Words VALUES (NULL, ?, ?)', (eachword, interaction_lang_id))
                 word_id = c.lastrowid    
             # Insert into DescrMatrix : (inte_id, video_id, role, )
             c.execute('INSERT INTO DescrMatrix VALUES (?,?,?,?)', (interaction_id, video_id, role, word_id))
