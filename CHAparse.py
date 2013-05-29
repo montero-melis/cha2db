@@ -140,21 +140,26 @@ class CHA:
 
         # regexes to match repetitions ("[/]") and retracings ("[//]") with all their scoped text
         # their scope is either the preceding "<...>" or the preceding word
-        reg_repet = re.compile(r"<[^>]+>\s*\[\/\]|\w+\s*\[\/\]")    # repetitions
-        reg_retra = re.compile(r"<[^>]+>\s*\[\/\/\]|\w+\s*\[\/\/\]")    # retracings
+        reg_repet = re.compile(r"<[^>]+>\s*\[\/\]|\w+\s*\[\/\]", re.UNICODE)    # repetitions
+        reg_retra = re.compile(r"<[^>]+>\s*\[\/\/\]|\w+\s*\[\/\/\]", re.UNICODE)    # retracings
+        reg_compl = re.compile(r"\(([^)]+)\)")    # Incomplete words as in 'been sit(ting) all day'
+        reg_overl = re.compile(r"<([^>]+)>\s*(?:\[>\]|\[<\])", re.UNICODE)    # remove overlap tags '[<]' etc, and keep text only
 
         for descr in body: # for each description
-            text = descr[2]
+            text = unicode(descr[2], 'utf-8')
             
             text = re.sub("\x15.*?\x15","",text)    # remove NAK (sound bullets)
-            text = re.sub("\+<","",text)            # remove "lazy" overlapping markers "+<"
+            text = re.sub(r"\+<|\+/\.|\+(,|//\.)","",text)     # remove "lazy" overlapping markers "+<", interruptions '+/.', self interruptions ('+//.') and self-completions ('+,')
             text = re.sub("\(\.\)","",text)         # remove pauses "(.)"
             text = re.sub(":","", text)             # remove lengthenings ":"
+            text = re.sub(r"\[\?\]","", text)       # rm best guess tag ('[?]') -- NB: but leaves the guess
+            text = reg_compl.sub(r'\1', text)       # rm text(TEXT)text
+            text = reg_overl.sub(r'\1', text)       # rm overlap tags and leave text only
             text = re.sub(reg_repet,"",text)        # rm repetitions (marked by "[/]")
             text = re.sub(reg_retra,"",text)        # rm retracings (marked by "[//]")
-            text = re.sub(r"&=?.+?\b|\bxxx\b|\bx\b","", text)    # rm phonological fragments and unidentified speech
+            text = re.sub(r"&=?.+?\b|\bxx?x?\b|\bx\b","", text)    # rm phonological fragments and unidentified speech 'x/xx/xxx'
             text = re.sub(r"\+\.\.[.?]","", text)   # rm trailing offs ("+..." or "+..?")
-            text = re.sub("[?.!]","", text)         # rm punctuation marks
+            text = re.sub("[?.!,]","", text)         # rm punctuation marks
             text = re.sub("\s\s+" , " ", text)      # remove all repeated white spaces
             text = text.strip()                     # strip all white spaces from beginning and end of line
             
@@ -164,12 +169,12 @@ class CHA:
         return self.processed_body
 
 
-# if __name__ == "__main__":    
-#     file = "SwAD_701_pop_or1_ori.cha"
+if __name__ == "__main__":    
+    file = "SwAD_701_pop_or1_ori.cha"
     
-#     # cha = CHA(file)      
-#     # pp(cha.extracted)
-#     # pp(cha.parsed_meta)
-#     # pp(cha.parsed_body)
-#     # pp(cha.processed_body)
+    cha = CHA(file)      
+    # pp(cha.extracted)
+    # pp(cha.parsed_meta)
+    # pp(cha.parsed_body)
+    pp(cha.processed_body)
     
