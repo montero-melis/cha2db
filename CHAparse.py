@@ -149,7 +149,7 @@ class CHA:
             text = unicode(descr[2], 'utf-8')
             
             text = re.sub("\x15.*?\x15","",text)    # remove NAK (sound bullets)
-            text = re.sub(r"\+<|\+/\.|\+(,|//\.)","",text)     # remove "lazy" overlapping markers "+<", interruptions '+/.', self interruptions ('+//.') and self-completions ('+,')
+            text = re.sub(r"\+<|\+/\.|\+(,|//\.|/\?)","",text)     # remove "lazy" overlapping markers "+<", interruptions ('+/.' or '+/?'), self interruptions ('+//.') and self-completions ('+,')
             text = re.sub("\(\.\)","",text)         # remove pauses "(.)"
             text = re.sub(":","", text)             # remove lengthenings ":"
             text = re.sub(r"\[\?\]","", text)       # rm best guess tag ('[?]') -- NB: but leaves the guess
