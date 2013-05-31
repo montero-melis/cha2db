@@ -12,9 +12,21 @@ except:
 
 
 # Run on all files
-for files in os.listdir(os.getcwd()):
-    if files.endswith(".cha"):
-        dbPopul("cha.db",CHA(files).parse_meta(), CHA(files).process_body())
+for eachfile in os.listdir(os.getcwd()):
+    if eachfile.endswith(".cha"):
+    	print eachfile
+        dbPopul("cha.db",CHA(eachfile).parse_meta(), CHA(eachfile).process_body())
+
+
+# # Run on all .cha files individually and create a db for each file
+# for eachfile in os.listdir(os.getcwd()):
+#     if eachfile.endswith(".cha"):
+#     	try:
+# 		    os.remove("cha.db")
+# 		except:
+# 		    print "Couldn't delete database"
+
+#         dbPopul("cha.db",CHA(eachfile).parse_meta(), CHA(eachfile).process_body())
 
 
 # # Run on a particular file

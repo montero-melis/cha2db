@@ -146,7 +146,7 @@ class CHA:
         reg_overl = re.compile(r"<([^>]+)>\s*(?:\[>\]|\[<\])", re.UNICODE)    # remove overlap tags '[<]' etc, and keep text only
 
         for descr in body: # for each description
-            text = unicode(descr[2], 'utf-8')
+            text = unicode(descr[2], 'utf-8') # At this point, encode all text in unicode before passing it to dbPopul.py
             
             text = re.sub("\x15.*?\x15","",text)    # remove NAK (sound bullets)
             text = re.sub(r"\+<|\+/\.|\+(,|//\.|/\?)","",text)     # remove "lazy" overlapping markers "+<", interruptions ('+/.' or '+/?'), self interruptions ('+//.') and self-completions ('+,')
