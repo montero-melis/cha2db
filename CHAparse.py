@@ -138,10 +138,9 @@ class CHA:
     # Does all necessary text processing to remove noise
         body = copy.deepcopy(self.parsed_body)  # Create copy of object instead of creating binding
 
-        # regexes to match repetitions ("[/]") and retracings ("[//]") with all their scoped text
-        # their scope is either the preceding "<...>" or the preceding word
-        reg_repet = re.compile(r"<[^>]+>\s*\[\/\]|\w+\s*\[\/\]", re.UNICODE)    # repetitions
-        reg_retra = re.compile(r"<[^>]+>\s*\[\/\/\]|\w+\s*\[\/\/\]", re.UNICODE)    # retracings
+        # the following regex 'reg_retra' matches repetitions ("[/]"), retracings ("[//]") and reformulations ("[///]")
+        # with all their scoped text: their scope is either the preceding "<...>" or the preceding word
+        reg_retra = re.compile(r"<[^>]+>\s*(\[\/\/\/\]|\[\/\/\]|\[\/\])|\w+\s*(\[\/\/\/\]|\[\/\/\]|\[\/\])", re.UNICODE)
         reg_compl = re.compile(r"\(([^)]+)\)")    # Incomplete words as in 'been sit(ting) all day'
         reg_overl = re.compile(r"<([^>]+)>\s*(?:\[>\]|\[<\])", re.UNICODE)    # remove overlap tags '[<]' etc, and keep text only
 
@@ -155,8 +154,7 @@ class CHA:
             text = re.sub(r"\[\?\]","", text)       # rm best guess tag ('[?]') -- NB: but leaves the guess
             text = reg_compl.sub(r'\1', text)       # rm text(TEXT)text
             text = reg_overl.sub(r'\1', text)       # rm overlap tags and leave text only
-            text = re.sub(reg_repet,"",text)        # rm repetitions (marked by "[/]")
-            text = re.sub(reg_retra,"",text)        # rm retracings (marked by "[//]")
+            text = re.sub(reg_retra,"",text)        # # repetitions, retracings, reformulations; see regex above
             text = re.sub(r"&=?.+?\b|\bxx?x?\b|\bx\b","", text)    # rm phonological fragments and unidentified speech 'x/xx/xxx'
             text = re.sub(r"\+\.\.[.?]","", text)   # rm trailing offs ("+..." or "+..?")
             text = re.sub("[?.!,]","", text)         # rm punctuation marks
