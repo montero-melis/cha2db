@@ -1,3 +1,4 @@
+## This script creates documents that serve as input to the 'textmatrix' function in the R package 'lsa'
 import os
 import sqlite3
 import codecs
@@ -12,9 +13,10 @@ results = c.execute('''SELECT p.name, v.videoname, w.word, l.language
     INNER JOIN Interaction i ON dm.interaction_id=i.id
     INNER JOIN Participant p ON i.participant_id=p.id
     INNER JOIN Language l ON i.language_id=l.id
-  WHERE dm.role='*SUJ' AND l.language ='swe'
-  ''')
-
+  WHERE dm.role='*SUJ' 
+    AND v.videoname NOT IN ('prt_meuche','closing')
+    AND l.language ='swe' 
+  ''') # for now, change 'swe' to 'spa' to get docs in one or the other lanugage
 
 # Create one document per videoclip and language, using the data for all participants of that language
 files_dict = {}
