@@ -1,6 +1,7 @@
 from CHAparse import *
 from dbPopul import *
 from os import *
+import re
 
 
 # Delete and create anew until the function works as expected
@@ -17,6 +18,37 @@ for eachfile in os.listdir(os.getcwd()):
     	print eachfile
         dbPopul("cha.db",CHA(eachfile).parse_meta(), CHA(eachfile).process_body())
 
+########################################
+########################################
+
+## Certain information has to be included 'manually'
+conn = sqlite3.connect("cha.db")
+c = conn.cursor()
+
+# videos.videotype has four possible values: 'target', 'training', 'distractor', 'closing'
+videos = []
+rows = c.execute('''SELECT videoname FROM Videos''')
+for row in rows:
+    videos.append(row[0])
+    
+for videoname in videos:
+    if videoname == 'prt_meuche':
+        vtype = 'training'
+    elif re.match('dis', videoname):
+        vtype = 'distractor'
+    elif videoname == 'closing':
+        vtype = 'closing'
+    else:
+        vtype = 'target'
+        
+    c.execute("UPDATE Videos SET videotype=? WHERE videoname=?", (vtype, videoname))
+
+conn.commit()
+conn.close()
+
+
+########################################
+########################################
 
 # # Run on all .cha files individually and create a db for each file
 # for eachfile in os.listdir(os.getcwd()):
