@@ -7,8 +7,7 @@ Outline
 ======
 
 This document describes all the steps needed to go from the raw data (i.e. transcriptions in .cha format) to the desired output: a populated SQLite database.
-The document serves as a development plan to write a Python program which will perform this task.
-The program has to be general enough so that it can be run on transcriptions in different languages; at the same time it has to be possible to fine-tune certain parameters to adjust to the specific type of input data.
+The document describes how this is implemented by a series of programs in this repo.
 
 
 Input: raw transcription data
@@ -57,7 +56,6 @@ Then comes the **body** of the transcription. Here is an example:
 The lines beginning with `@G` announce that a new video is being described. 
 The string that follows these lines (e.g. `tgt_cherue`, l.18) is the ID of the video.
 The three letter code `*EXP:` or `*SUJ:` indicates who is talking, either the experimenter or the participant ("subject").
-Of these two, our program only need extract the lines beginning with `*SUJ:`.
 
 
 Output: database in SQLite format
@@ -70,10 +68,8 @@ We refer to the data that will mainly be analysed as **data proper**, while the 
 The former is contained in the body of the transcriptions, the latter in the headers.
 We find that the most efficient way to organise this data is in database format
 
-If we don't take into account the metadata, the data matrices have *words in their rows* and *videos in their columns*.
-The individual cells count the frequency with which a certain word is used in the description of a videoclip.
-
-For the data above this would result in the following data matrix:
+For analysis purposes the data will be organized in a term-by-videoclip matrix.
+To illustrate such a matrix, this is what it would look like for the data above:
 
 	+-------------+------------+------------+------------+
 	|             | tgt_cherue | pre_pnegro | trd_brocol |
@@ -101,7 +97,64 @@ This is the kind of representation we typically will be working on. However, onc
 Database structure
 =================
 
-(Write here what tables and relations the db will contain, see googledoc)
+Tables
+------
+
+	Condition     Gender        PartGroup     Videos      
+	DescrMatrix   Interaction   Participant   Words       
+	Experimenter  Language      Profile    
+
+
+Schema
+------
+
+	CREATE TABLE Language (id INTEGER PRIMARY KEY, language TEXT);
+	CREATE TABLE Gender (id INTEGER PRIMARY KEY, gender TEXT);
+	CREATE TABLE PartGroup (id INTEGER PRIMARY KEY, partGroup TEXT);
+	CREATE TABLE Profile (id INTEGER PRIMARY KEY, profile TEXT);
+	CREATE TABLE Condition (id INTEGER PRIMARY KEY, condition TEXT);
+	CREATE TABLE Videos (id INTEGER PRIMARY KEY, videoname TEXT, videotype TEXT);
+	CREATE TABLE Words (id INTEGER PRIMARY KEY, word TEXT, language_id INTEGER);
+	CREATE TABLE Experimenter(
+	        id INTEGER PRIMARY KEY,
+	        name TEXT,
+	        gender_id INTEGER,
+	        L1 INTEGER,
+	        FOREIGN KEY(gender_id) REFERENCES Gender(id),
+	        FOREIGN KEY(L1) REFERENCES Language(id)
+	        );
+	CREATE TABLE Participant(
+	        id INTEGER PRIMARY KEY,
+	        name TEXT,
+	        gender_id INTEGER,
+	        L1 INTEGER,
+	        partGroup_id INTEGER,
+	        age REAL,
+	        OQPTscore REAL,
+	        FOREIGN KEY(gender_id) REFERENCES Gender(id),
+	        FOREIGN KEY(L1) REFERENCES Language(id)
+	        );
+	CREATE TABLE Interaction(
+	        id INTEGER PRIMARY KEY,
+	        participant_id INTEGER,
+	        experimenter_id INTEGER,
+	        language_id INTEGER,
+	        orderLing INTEGER,
+	        profile_id INTEGER,
+	        condition_id INTEGER,
+	        transcriber TEXT,
+	        FOREIGN KEY(participant_id) REFERENCES Participant(id), 
+	        FOREIGN KEY(experimenter_id) REFERENCES Experimenter(id),    
+	        FOREIGN KEY(language_id) REFERENCES Language(id),  
+	        FOREIGN KEY(profile_id) REFERENCES Profile(id),
+	        FOREIGN KEY(condition_id) REFERENCES Condition(id)
+	        );
+	CREATE TABLE DescrMatrix(
+	        interaction_id INTEGER,
+	        video_id INTEGER,
+	        role TEXT,
+	        word_id INTEGER
+	        );
 
 
 Steps
