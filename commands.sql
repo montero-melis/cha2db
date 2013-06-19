@@ -157,25 +157,93 @@ WHERE dm.role='*SUJ' AND v.videoname NOT IN ('prt_meuche','closing')
 ;
 
 
--- Average length of description (rm training item 'prt_meuche' and 'closing')
+-- Average description length (target items only)
+-- NB: multiply by 1.0 in order to convert integer division to floating point division
+-- all participants
 SELECT AVG(countpervideo)
 FROM
-	(SELECT COUNT(*)/(SELECT COUNT(*) FROM Participant) AS countpervideo
+	(SELECT COUNT(*)*1.0/(SELECT COUNT(*) FROM Participant) AS countpervideo
 	FROM DescrMatrix dm
 		INNER JOIN videos v ON dm.video_id=v.id
-	WHERE dm.role='*SUJ' AND v.videoname NOT IN ('prt_meuche','closing')
+	WHERE dm.role='*SUJ' AND v.videotype='target'
+	GROUP BY dm.video_id)
+;
+-- Swedish only
+SELECT AVG(countpervideo)
+FROM
+	(SELECT COUNT(*)*1.0/(SELECT COUNT(*) FROM Participant WHERE partGroup_id=2) AS countpervideo
+	FROM DescrMatrix dm
+		INNER JOIN videos v ON dm.video_id=v.id
+		INNER JOIN Interaction i ON dm.interaction_id=i.id
+	WHERE dm.role='*SUJ' AND v.videotype='target' AND i.language_id=2
+	GROUP BY dm.video_id)
+;
+-- Spanish only
+SELECT AVG(countpervideo)
+FROM
+	(SELECT COUNT(*)*1.0/(SELECT COUNT(*) FROM Participant WHERE partGroup_id=1) AS countpervideo
+	FROM DescrMatrix dm
+		INNER JOIN videos v ON dm.video_id=v.id
+		INNER JOIN Interaction i ON dm.interaction_id=i.id
+	WHERE dm.role='*SUJ' AND v.videotype='target' AND i.language_id=1
 	GROUP BY dm.video_id)
 ;
 
 
+-- Average description length per item (target items only)
+-- all participants
+SELECT v.videoname, COUNT(*)*1.0/(SELECT COUNT(*) FROM Participant) AS wordspervideo
+FROM DescrMatrix dm
+	INNER JOIN videos v ON dm.video_id=v.id
+WHERE dm.role='*SUJ' AND v.videotype='target'
+GROUP BY dm.video_id
+;
+-- Swedish only
+SELECT v.videoname, COUNT(*)*1.0/(SELECT COUNT(*) FROM Participant WHERE partGroup_id=2) AS wordspervideo
+FROM DescrMatrix dm
+	INNER JOIN videos v ON dm.video_id=v.id
+	INNER JOIN Interaction i ON dm.interaction_id=i.id
+WHERE dm.role='*SUJ' AND v.videotype='target' AND i.language_id=2
+GROUP BY dm.video_id
+;
+-- Spanish only
+SELECT v.videoname, COUNT(*)*1.0/(SELECT COUNT(*) FROM Participant WHERE partGroup_id=1) AS wordspervideo
+FROM DescrMatrix dm
+	INNER JOIN videos v ON dm.video_id=v.id
+	INNER JOIN Interaction i ON dm.interaction_id=i.id
+WHERE dm.role='*SUJ' AND v.videotype='target' AND i.language_id=1
+GROUP BY dm.video_id
+;
+
+
+
 -- List of all words actually used, repeating each word as often as it has been used
 -- this can be used as input for some R functions like 'zipf.fnc' (package 'languageR')
+-- Swedish
 SELECT w.word
 FROM DescrMatrix dm
 	INNER JOIN Words w ON dm.word_id=w.id
-    INNER JOIN Videos v ON dm.video_id=v.id
+	INNER JOIN Videos v ON dm.video_id=v.id
+	INNER JOIN Interaction i ON dm.interaction_id=i.id
+	INNER JOIN Language l ON i.language_id=l.id
+WHERE v.videotype IN ('target') AND dm.role='*SUJ' AND l.language="swe"
+;
+-- Spanish
+SELECT w.word
+FROM DescrMatrix dm
+	INNER JOIN Words w ON dm.word_id=w.id
+	INNER JOIN Videos v ON dm.video_id=v.id
 	INNER JOIN Interaction i ON dm.interaction_id=i.id
 	INNER JOIN Language l ON i.language_id=l.id
 WHERE v.videotype IN ('target') AND dm.role='*SUJ' AND l.language="spa"
 ;
 
+
+-- In order to save SQL output to csv format and put back output to standard
+.echo off
+.headers on
+.nullvalue NULL
+.mode csv
+.output filename.csv
+SELECT column FROM table;
+.output stdout
