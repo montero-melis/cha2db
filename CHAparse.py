@@ -60,7 +60,7 @@ class CHA:
             # 'ppt_group': group of the participant
             # 'exp_name': experimenter name
             # 'transcr': name of transcriber
-            # 'order': one of th*e four semi-randomized orders in which the videoclips were shown
+            # 'order': one of the four semi-randomized orders in which the videoclips were shown
             # TODO: add other comment keys (comment1, comment2 etc for other comments in transcriptions)
     
         for tup in self.extracted:
