@@ -1,7 +1,7 @@
 import os
 import sqlite3
 import csv
-import CHAparse
+# import CHAparse
 
 
 def dbPopul(dbName, subject_info=None, ling_data=None, nonling_data=None):
@@ -116,9 +116,13 @@ def dbPopul(dbName, subject_info=None, ling_data=None, nonling_data=None):
     else:
     	f = subject_info
     	with open(f) as csvfile:
-    		subj_data = csv.reader(csvfile)
-    		for row in subj_data:
-    			print row
+            subj_data = csv.reader(csvfile, dialect='excel-tab')
+            next(subj_data) # Don't want to include the header row
+            for row in subj_data:
+                uni_row = []
+                for field in row:
+                    uni_row.append(unicode(field,'utf-8')) # this is needed to get strings into unicode
+                c.execute('INSERT INTO Participant VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', uni_row)
 
 
     # data from linguistic task
