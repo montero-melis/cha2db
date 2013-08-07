@@ -1,18 +1,19 @@
 import os
 import sqlite3
 import csv
-# import CHAparse
+import CHAparse
+import re
 
 
-def dbPopul(dbName, subject_info=None, ling_data=None, nonling_data=None):
+def dbPopul(dbName, subject_info=None, ling_meta=None, ling_data=None, nonling_data=None):
 
     DB = dbName
 
-    # Delete and create anew until the function works as expected
-    try:
-        os.remove(DB)
-    except:
-        print "Couldn't delete database"
+    # # Delete and create anew until the function works as expected
+    # try:
+    #     os.remove(DB)
+    # except:
+    #     print "Couldn't delete database"
         
     conn = sqlite3.connect(DB)
     c = conn.cursor()
@@ -71,6 +72,7 @@ def dbPopul(dbName, subject_info=None, ling_data=None, nonling_data=None):
     # Nonlinguistic task
     c.execute('''CREATE TABLE IF NOT EXISTS NonlingTask (
         participant_id INTEGER,
+        ExpName
 		ExpCondition TEXT,
 		Incl_Excl TEXT,
 		Name TEXT,
@@ -127,106 +129,61 @@ def dbPopul(dbName, subject_info=None, ling_data=None, nonling_data=None):
 
     # data from linguistic task
 
-    if ling_data is None:
-    	print "No linguistic data provided"
-    # else:
+    if ling_meta is None or ling_data is None:
+    	print "No (or not sufficient) linguistic data provided"
+    else:
+
+        m = ling_meta # m for metadata
+        t = ling_data # t for text
+
+        # Find participant ID (the name and the language are the only metada used)
+        part_name = m["ppt_name"] # has form 'Spanish_Native_323'
+        print part_name
+        reg_name = re.compile(r"(\d+)") # match one or more digits
+        match = reg_name.search(part_name)
+        part_name = match.group(1) # Now the name is correctly (323,) in tuple format 
+        c.execute('SELECT id FROM Participant WHERE name=?', (part_name,)) # get participant's ID in dB
+        row = c.fetchone()
+        if row is None:
+            print "participant", part_name ,"is not in dB!"
+        else:
+            participant_id = row[0] # Since we want to extract the value from the tuple
+            print "This is participant", participant_id
+
+        # Keep the language of the interaction as a variable to be used to populate LingTask table
+        lang = m["lang_interact"]
+
+        # Populate LingTask table
+        for turn in t: # Each turn refers to what each participant (subject/experimenter) says for each description
+            # Parse video (turn[0]), enter it to Videos if necessary, and keep its id as a variable video_id
+            c.execute('SELECT id FROM Videos WHERE videoname = ?', (turn[0],))
+            row = c.fetchone()
+            if row is not None:
+                video_id = row[0]
+            else:
+                c.execute('INSERT INTO Videos VALUES (NULL, ?, NULL)', (turn[0],))
+                video_id = c.lastrowid    
+            # Update variable 'role' with value turn[1]
+            role = turn[1]
+            # For each word in turn[2] (use split method!):
+            for eachword in turn[2].split():
+                # Parse each word, enter into Words if necessary, keep its id as the variable word_id
+                c.execute('SELECT id FROM Words WHERE word = ? AND language = ?', (eachword, lang))
+                row = c.fetchone()
+                if row is not None:
+                    word_id = row[0]
+                else:
+                    c.execute('INSERT INTO Words VALUES (NULL, ?, ?, NULL,NULL)', (eachword, lang))
+                    word_id = c.lastrowid    
+                # Insert into LingTask : (inte_id, video_id, role, )
+                c.execute('INSERT INTO LingTask VALUES (?,?,?,?)', (participant_id, video_id, role, word_id))
 
 
     # data from nonlinguistic task
 
     if nonling_data is None:
-    	print "No nonlinguistic data provided"
+        print "No nonlinguistic data provided"
     # else:
-
-
-
-    # m = metainfo
-    # t = body
-
-    # ## Experimenter table and indexes -- add only a row to this table if new experimenter!
-    # # Check experimenter name
-    # c.execute('SELECT id FROM Experimenter WHERE name = ?', (m["exp_name"],))
-    # row = c.fetchone()
-    # if row is not None: # that is if experimenter already in db
-    #     expe_name_id = row[0]
-    # else: # experimenter is not in the db
-    #     c.execute('SELECT id FROM Gender WHERE gender = ?', (m["exp_gender"],)) # fetch gender
-    #     row = c.fetchone()
-    #     if row is not None: # value for gender is already in db
-    #         expe_gender_id = row[0]
-    #     else: # value for gender is not in db and has to be added
-    #         c.execute('INSERT INTO Gender VALUES (NULL,?)', (m["exp_gender"],))
-    #         expe_gender_id = c.lastrowid
-    #     c.execute('INSERT INTO Experimenter VALUES (NULL,?,?,NULL)', (m["exp_name"],expe_gender_id)) # populate Experimenter table
-    #     expe_name_id = c.lastrowid
-
-
-    # ## Participant table and indexes
-    # # participant gender
-    # c.execute('SELECT id FROM Gender WHERE gender = ?', (m["ppt_gender"],))
-    # row = c.fetchone()
-    # if row is not None:
-    #     part_gender_id = row[0]
-    # else:
-    #     c.execute('INSERT INTO Gender VALUES (NULL,?)', (m["ppt_gender"],))
-    #     part_gender_id = c.lastrowid
-    # # participant group
-    # c.execute('SELECT id FROM PartGroup WHERE partGroup = ?', (m["ppt_group"],))
-    # row = c.fetchone()
-    # if row is not None:
-    #     part_group_id = row[0]
-    # else:
-    #     c.execute('INSERT INTO PartGroup VALUES (NULL,?)', (m["ppt_group"],))
-    #     part_group_id = c.lastrowid
-    # # participant name
-    # part_name = m["ppt_name"]
-    # # participant role: not inserted into db since this info is alread covered as 'participant group'
-    # # populate Participant table
-    # c.execute('INSERT INTO Participant VALUES (NULL,?,?,NULL,?,NULL,NULL)', (part_name, part_gender_id, part_group_id))
-    # part_name_id = c.lastrowid
-
-
-    # ## Interaction table
-    # # language of interaction
-    # c.execute('SELECT id FROM Language WHERE language = ?', (m["lang_interact"],))
-    # row = c.fetchone()
-    # if row is not None:
-    #     interaction_lang_id = row[0]
-    # else:
-    #     c.execute('INSERT INTO Language VALUES (NULL, ?)', (m["lang_interact"],))
-    #     interaction_lang_id = c.lastrowid    
-    # # orderLing (order in which linguistic task is performed)
-    # orderLing = m["order"]
-    # # Transcriber
-    # transcr = m["transcr"]
-    # # Populate Interaction table
-    # c.execute('INSERT INTO Interaction VALUES (NULL,?,?,?,?,NULL,NULL,?)', (part_name_id, expe_name_id, interaction_lang_id, orderLing, transcr))
-    # interaction_id = c.lastrowid
-
-    # ## DescrMatrix table
-    # for turn in t: # Each turn refers to what each participant (subject, experimenter) says for each description
-    #     # Parse video (turn[0]), enter it to Videos if necessary, and keep its id as a variable video_id
-    #     c.execute('SELECT id FROM Videos WHERE videoname = ?', (turn[0],))
-    #     row = c.fetchone()
-    #     if row is not None:
-    #         video_id = row[0]
-    #     else:
-    #         c.execute('INSERT INTO Videos VALUES (NULL, ?, NULL)', (turn[0],))
-    #         video_id = c.lastrowid    
-    #     # Update variable 'role' with value turn[1]
-    #     role = turn[1]
-    #     # For each word in turn[2] (use split method!):
-    #     for eachword in turn[2].split():
-    #         # Parse each word, enter into Words if necessary, keep it id as variable word_id
-    #         c.execute('SELECT id FROM Words WHERE word = ? AND language_id = ?', (eachword, interaction_lang_id))
-    #         row = c.fetchone()
-    #         if row is not None:
-    #             word_id = row[0]
-    #         else:
-    #             c.execute('INSERT INTO Words VALUES (NULL, ?, ?)', (eachword, interaction_lang_id))
-    #             word_id = c.lastrowid    
-    #         # Insert into DescrMatrix : (inte_id, video_id, role, )
-    #         c.execute('INSERT INTO DescrMatrix VALUES (?,?,?,?)', (interaction_id, video_id, role, word_id))
 
 
     conn.commit()

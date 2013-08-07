@@ -15,6 +15,7 @@ class CHA:
         self.process_body()
         
 
+    ## Basic extraction of information
     def extract(self):
         cha = []
         f = open(self.file)
@@ -65,7 +66,7 @@ class CHA:
     
         for tup in self.extracted:
             c_key = tup[0]
-            c_val = tup[1]    # CAMBIAR TODAS LAS OCURRENCIAS!
+            c_val = tup[1]
             # Check language of interaction
             if c_key == '@Languages':
                 meta['lang_interact'] = c_val
@@ -168,11 +169,11 @@ class CHA:
 
 
 if __name__ == "__main__":    
-    file = "SwAD_701_pop_or1_ori.cha"
+    file = "SwAD_1004_pop_or1_ori.cha"
     
     cha = CHA(file)      
     # pp(cha.extracted)
-    # pp(cha.parsed_meta)
+    pp(cha.parsed_meta)
     # pp(cha.parsed_body)
-    pp(cha.processed_body)
+    # pp(cha.processed_body)
     
