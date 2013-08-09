@@ -1,0 +1,74 @@
+.headers ON
+.mode column
+.schema
+CREATE TABLE LingTask(
+        participant_id INTEGER,
+        video_id INTEGER,
+        role TEXT,
+        word_id INTEGER,
+        FOREIGN KEY (participant_id) REFERENCES Participant(id),
+        FOREIGN KEY (video_id) REFERENCES Video(id),
+        FOREIGN KEY (word_id) REFERENCES Words(id)
+        );
+CREATE TABLE NonlingTask (
+        participant_id INTEGER,
+        ExpName
+		ExpCondition TEXT,
+		Incl_Excl TEXT,
+		Name TEXT,
+		SessionDateTime TEXT,
+		Session_Lang TEXT,
+		Language TEXT,
+		RandomList TEXT,
+		ProcBlock TEXT,
+		Procedure_Trial TEXT,
+		Trial TEXT,
+		CategBlocks TEXT,
+		CategBlocks_Sample TEXT,
+		FamList TEXT,
+		FamList_Sample TEXT,
+		Vid_Famil TEXT,
+		PlayTime_Fam TEXT,
+		Running_Trial INTEGER,
+		ViewTime_Train REAL,
+		CategTime_Train REAL,
+		ListTrain TEXT,
+		X_Train REAL,
+		Y_Train REAL,
+		Series INTEGER,
+		Vid_Train TEXT,
+		LogSeries INTEGER,
+		ViewTime REAL,
+		CategTime REAL,
+		Log_All66 INTEGER,
+		X REAL,
+		Y REAL,
+		Vid_Categ TEXT,
+        FOREIGN KEY (participant_id) REFERENCES Participant(id)
+    	);
+CREATE TABLE Participant(
+        id INTEGER PRIMARY KEY,
+        name TEXT,
+        groupname TEXT,
+        gender TEXT,
+        age REAL,
+        date_time INTEGER,
+        condition TEXT,
+        ling_order INTEGER,
+        nonling_randomlist INTEGER,
+        screenshots_nonling TEXT,
+        OQPT_score REAL,
+        experimenter TEXT,
+        exclude INTEGER,
+        comments_general TEXT,
+        comments_Ling TEXT,
+        comments_Nonling TEXT
+        );
+CREATE TABLE Videos (id INTEGER PRIMARY KEY, videoname TEXT, videotype TEXT);
+CREATE TABLE Words (
+    	id INTEGER PRIMARY KEY,
+    	word TEXT,
+    	language TEXT,
+    	semantic_categ TEXT,
+    	POS TEXT
+    	);

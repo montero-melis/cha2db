@@ -20,24 +20,25 @@ WHERE w.word LIKE '%,'
 
 
 -- How many participants per language
-SELECT partGroup_id, COUNT(*) FROM Participant GROUP BY partGroup_id;
+SELECT groupname, COUNT(*) FROM Participant GROUP BY groupname;
 
 
 -- WORDS
 -- 
 
 -- How many unique words are there in the db per language?
-SELECT Language.language, COUNT(Words.word)
-FROM Words INNER JOIN Language ON Words.language_id=Language.id
-GROUP BY language_id;
+SELECT language, COUNT(Words.word)
+FROM Words
+GROUP BY language;
 -- Same, but consider only target items and participant descriptions
-SELECT l.language, COUNT(DISTINCT word_id)
-FROM DescrMatrix dm
-	INNER JOIN Videos v ON dm.video_id=v.id
-	INNER JOIN Interaction i ON dm.interaction_id=i.id
-	INNER JOIN Language l ON i.language_id=l.id
+-- ATTENTION, NEEDS CHANGES AFTER CHANGING DB SCHEMA!!!
+SELECT Words.language, COUNT(DISTINCT lt.word_id)
+FROM LingTask lt
+	INNER JOIN Videos v ON lt.video_id=v.id
+	INNER JOIN Participant p ON lt.participant_id=p.id
+	INNER JOIN Words w ON w.id=lt.word_id
 WHERE v.videotype IN ('target') AND dm.role='*SUJ'
-GROUP BY i.language_id
+GROUP BY .language_id
 ;
 
 -- Type/token ratio per language (divide both measures -- couldn't figure out how to get the ratio directly)
