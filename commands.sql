@@ -71,6 +71,30 @@ ORDER BY nbOccurrences DESC
 LIMIT 20
 ;
 
+-- One list per language of all words in alphabetic order, together with how often they occurr
+-- Use this to tag the words for semantic category and PartOfSpeech
+-- NB: Only words appearing in target item descriptions and uttered by subjects
+-- Spanish
+SELECT w.language, w.id, COUNT(lt.word_id) AS nbOccurrences, w.word
+FROM LingTask lt
+	INNER JOIN Words w ON lt.word_id=w.id
+	INNER JOIN Videos v ON lt.video_id=v.id
+WHERE w.language="spa" AND v.videotype IN ('target') AND lt.role='*SUJ'
+GROUP BY lt.word_id
+ORDER BY w.word 
+;
+-- Swedish
+SELECT w.language, w.id, COUNT(lt.word_id) AS nbOccurrences, w.word
+FROM LingTask lt
+	INNER JOIN Words w ON lt.word_id=w.id
+	INNER JOIN Videos v ON lt.video_id=v.id
+WHERE w.language="swe" AND v.videotype IN ('target')
+GROUP BY lt.word_id
+ORDER BY w.word 
+;
+
+
+
 
 -- Word length
 -- 20 longest words in db
@@ -86,6 +110,20 @@ WHERE language="swe"
 ORDER BY length DESC LIMIT 5;
 -- Average length for each language
 
+
+
+-- Problem: some words in the database end with a comma ',' or any other pattern which shows you that sth's wrong
+-- Goal: try to see where these words come from (when are they populated into the db) to work on a solution
+-- How many words in the database do end with a comma (but substitute with other unwanted pattern as well)?
+SELECT COUNT(*) FROM Words WHERE word LIKE '%Vale%';
+-- Query: 
+SELECT w.id, w.word, p.name, lt.role, v.videoname
+FROM LingTask lt
+	INNER JOIN Words w ON lt.word_id=w.id
+	INNER JOIN Videos v ON lt.video_id=v.id
+	INNER JOIN Participant p ON lt.participant_id=p.id
+WHERE w.word LIKE '%Vale%'
+;
 
 
 
