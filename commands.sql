@@ -7,6 +7,17 @@
 SELECT groupname, COUNT(*) FROM Participant GROUP BY groupname;
 
 
+-- SQL for data export to R (will serve as input for tm package)
+-- participant descriptions of target items only
+SELECT p.id, p.name, p.groupname, v.videoname, v.videotype, w.language, w.word
+FROM Participant p 
+	INNER JOIN LingTask lt ON lt.participant_id=p.id 
+	INNER JOIN Videos v ON lt.video_id=v.id
+	INNER JOIN Words w ON w.id=lt.word_id
+WHERE lt.role='*SUJ' AND v.videotype IN ('target')
+;
+
+
 -- WORDS
 
 -- How many unique words are there in the db per language?
@@ -88,12 +99,10 @@ SELECT w.language, w.id, COUNT(lt.word_id) AS nbOccurrences, w.word
 FROM LingTask lt
 	INNER JOIN Words w ON lt.word_id=w.id
 	INNER JOIN Videos v ON lt.video_id=v.id
-WHERE w.language="swe" AND v.videotype IN ('target')
+WHERE w.language="swe" AND v.videotype IN ('target') AND lt.role='*SUJ'
 GROUP BY lt.word_id
 ORDER BY w.word 
 ;
-
-
 
 
 -- Word length
