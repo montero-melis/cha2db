@@ -6,16 +6,12 @@ import codecs
 conn = sqlite3.connect('cha.db')
 c = conn.cursor()
 
-results = c.execute('''SELECT p.name, v.videoname, w.word, l.language
-  FROM DescrMatrix dm
-    INNER JOIN Words w ON dm.word_id=w.id
-    INNER JOIN Videos v ON dm.video_id=v.id
-    INNER JOIN Interaction i ON dm.interaction_id=i.id
-    INNER JOIN Participant p ON i.participant_id=p.id
-    INNER JOIN Language l ON i.language_id=l.id
-  WHERE dm.role='*SUJ' 
-    AND v.videoname NOT IN ('prt_meuche','closing')
-    AND l.language ='swe' 
+results = c.execute('''SELECT p.name, v.videoname, w.word, w.language
+  FROM Participant p 
+    INNER JOIN LingTask lt ON lt.participant_id=p.id 
+    INNER JOIN Videos v ON lt.video_id=v.id
+    INNER JOIN Words w ON w.id=lt.word_id
+  WHERE lt.role='*SUJ' AND v.videotype IN ('target') AND w.language ='spa' 
   ''') # for now, change 'swe' to 'spa' to get docs in one or the other lanugage
 
 # Create one document per videoclip and language, using the data for all participants of that language
@@ -31,7 +27,7 @@ def get_fd(files_dict,videoname, lang):
 for r in results:
     _, videoname, word, lang = r
     f = get_fd(files_dict, videoname, lang)
-    f.write("%s/" % (word,))
+    f.write("%s " % (word,))
     print files_dict
 
 
