@@ -11,8 +11,9 @@ output.txt
 
 test.sql
 
-data_hopi.csv
-data_hopi.txt
+participant_data_hopi.csv
+participant_data_hopi.txt
+participant_data_overview.xlsx
 
 
 
