@@ -7,6 +7,25 @@
 SELECT groupname, COUNT(*) FROM Participant GROUP BY groupname;
 
 
+-- How many participants per languag by counting participants in the LingTask table?
+-- Should match with number in Participant table!
+SELECT COUNT(DISTINCT p.name)
+FROM LingTask lt
+	INNER JOIN Participant p ON lt.participant_id=p.id
+WHERE p.groupname='SwAD'
+;
+
+
+-- List of (Swedish) participants in LingTask
+SELECT DISTINCT p.name
+FROM LingTask lt
+	INNER JOIN Participant p ON lt.participant_id=p.id
+WHERE p.groupname='SwAD'
+ORDER BY p.name
+;
+
+
+
 -- SQL for data export to R (will serve as input for tm package)
 -- participant descriptions of target items only
 SELECT p.id, p.name, p.groupname, v.videoname, v.videotype, w.language, w.word
