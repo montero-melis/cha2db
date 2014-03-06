@@ -14,7 +14,7 @@ except:
 
 
 # Populate db with participant data:
-dbPopul("cha_test.db", "participant_data_140117.txt")
+dbPopul("cha_test.db", "participant_data.txt")
 
 
 # Populate with linguistic data from all .cha files in directory
