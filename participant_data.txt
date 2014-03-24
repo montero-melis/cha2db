@@ -1,8 +1,122 @@
 ID	Group	Gender	Age	Date	PopiTaskCondition	Popi_Ling_order	Popi_NonLing_RandomList	Screenshots_Nonling	OQPT_score	Experimenter	Exclude	Comments_general	Comments_PopiLing	Comments_PopiNonLing
+101	SpAD	female		2012-09-18	ling_only	2	NA		23	Guillermo				
+102	SpAD	female	22	2012-09-19	ling_only	2	NA		17	Guillermo				
+103	SpAD	female	25	2012-09-19	ling_only	4	NA		26	Guillermo				
+104	SpAD	female	23	2012-09-20	ling_only	2	NA		20	Guillermo				
+105	SpAD	female	25	2012-09-21	ling_only	4	NA		21	Guillermo			Buen ejemplo de PATH-only (aunque no sistematico)	
+106	SpAD	female	23	2012-09-21	ling_only	3	NA		14	Guillermo				
+111	SpAD	female	22	2012-09-24	ling_nonling	1	2	no	20	Guillermo			"Uso extrano del verbo 'elevar' / 'descender' (ver p.ej. pgm_paqtoi, trm_voitoi, tgm_sactoi, trd_brocol, prm_boutoi) y tambien de 'a través' (p.ej. tgd_malcol)"	
+112	SpAD	female	21	2012-09-25	ling_nonling	3	4	no	19	Guillermo			Muy buen ejemplo de PATH-only (practicamente sistematico). También uso transitivo de 'entrar' y 'caer' (p.ej. pre_pnemai).	
+113	SpAD	female	21	2012-09-25	ling_nonling	3	11	manually	12	Guillermo			Bastantes expresiones (verbos o perífrasis) de MANNER	
+114	SpAD	female	23	2012-09-26	nonling_ling	4	40	regular	15	Guillermo				
+115	SpAD	female	24	2012-09-26	ling_nonling	1	14	no	28	Guillermo				
+116	SpAD	female	20	2012-09-27	nonling_ling	2	28	regular	14	Guillermo				
+117	SpAD	female	22	2012-09-27	ling_nonling	1	27	no	20	Guillermo				Forgot Screenshots! (there is nothing at all)
+118	SpAD	female	23	2012-10-01	nonling_ling	4	12	regular	18	Guillermo				
+119	SpAD	female	28	2012-10-02	ling_nonling	4	33	regular	13	Guillermo				
+120	SpAD	female	20	2012-10-02	ling_nonling	4	34	regular	25	Guillermo		Aurea ha vivido 6 agnos en Mallorca (donde se habla catalan) y 11 en Galicia (donde se habla gallego); ninguno de los dos idiomas parece ser dominante en cuanto al uso; pero en el gallego indica un dominio =5 para todas las competencias. En su defensa hay que decir que no ha residido en el extranjero mas de 6 meses.		
+121	SpAD	female	23	2012-10-03	nonling_ling	1	29	regular	29	Guillermo				
+122	SpAD	female	24	2012-10-04	ling_nonling	1	18	regular	19	Guillermo				
+123	SpAD	female	21	2012-10-04	nonling_ling	3	57	regular	26	Guillermo				
+201	SpAD	male		2012-09-18	ling_only	1	NA		26	Guillermo				
+202	SpAD	male	27	2012-09-19	ling_only	1	NA		26	Guillermo		"Came spontaneously, no e-mail contact"	"Quite wordy descriptions; always mentions directions (left-to-right, right-to-left)"	
+203	SpAD	male	27	2012-09-21	ling_only	1	NA		24	Guillermo		"ACCEPTABLE PARTICIPANT? Aldin es nacido en Espana, pero de padres filipinos; vivio una temporada (2 anos?) en Filipinas durante su infancia; habla Ilocano"	Exclusively PATH-only descriptions (e.g. tge_chagro)	
+204	SpAD	male	33	2012-09-21	ling_only	3	NA		30	Guillermo		"This participant asked extraordinarily many questions, before each task and also during the tasks"	"Excellent example of NOISY data. Many digresions and descriptions accompanied by thoughts and opinions on the videos (e.g. tre_cadgro). Interesting how he rectifies his description changing from PATH info to MANNER info (e.g. prm_boudun, tgd_malnei)"	
+211	SpAD	male	25	2012-09-24	ling_nonling	1	1	no	19	Guillermo			PATH >> MANNER	
+212	SpAD	male	20	2012-09-26	nonling_ling	2	15	regular	23	Guillermo				
+213	SpAD	male	19	2012-09-26	nonling_ling	3	9	manually	28	Guillermo				Este pte era extremadamente rapido a la hora de ordenar las animaciones; desde pronto encontro un metodo y lo aplicaba sistematicamente y con gran rapidez. No parece que el metodo cambiara mucho a lo largo de las series (cf. tb RetroProt)
+214	SpAD	male	23	2012-09-27	excluded	2*	38*	regular	17	Guillermo	99	PopiTask NOT VALID	"Failed to record sound, i.e. no description of clips"	The data for this task is complete but the use I can make of it is restricted since there is no audio recording for PopiLing (cf. Comments_PopiLing). Thus I will not be able to examine any relation between Ling and NonLing Popi tasks.
+215	SpAD	male	21	2012-09-27	ling_nonling	2	38	regular	22	Guillermo				
+216	SpAD	male	21	2012-10-01	ling_nonling	2	17	regular	20	Guillermo				
+217	SpAD	male	25	2012-10-01	ling_nonling	1	32	regular	20	Guillermo				
+218	SpAD	male	22	2012-10-03	ling_nonling	2	36	regular	19	Guillermo				
+219	SpAD	male	28	2012-10-03	nonling_ling	1	5	regular	25	Guillermo		A Oscar le entra una risa tonta a veces y parece estar un poco despistado a veces		"A Oscar le tengo que explicar la tarea alguna vez mas de lo normal y el comenta varias veces: 'la he liado, es que soy un poco lerdin'. Su serie 1 parece francamente dificil de interpretar"
+220	SpAD	male	20	2012-10-04	nonling_ling	2	51	regular	17	Guillermo				
+302	SpAD	female		2012-09-19	ling_only	3	NA		21	Guillermo				
+303	SpAD	female	21	2012-09-19	ling_only	3	NA		16	Guillermo			"MANNER > PATH. systematically conveys MANNER information; when she just mentions one component, it is usually MANNER (e.g. pgd_valnei); at other times she conveys two MANNER components vs one PATH (e.g. pre_pnemai)."	
+304	SpAD	female	21	2012-09-20	ling_only	1	NA		26	Guillermo			"PATH=MANNER. Neat descriptions, quite rich and complex. E.g. tge_chagro shows how the flexibility of Spanish allows for including quite a lot of semantic details"	
+305	SpAD	female	29	2012-09-20	ling_only	3	NA		15	Guillermo			Comments sometimes on the clips in a rather funny and sweet way (e.g. tre_cadgro). Breaks against boundary-crossing constraint (e.g. pre_pnegro)	
+306	SpAD	female	21	2012-09-21	ling_only	4	NA		34	Guillermo				
+307	SpAD	female	20	2012-09-24	nonling_ling	4	1	no	20	Guillermo	9		"Given order of Popi_task, the Ling task is not really valid either (see comment on PopiNonLing), but maybe interesting to analyse anyway"	"NonLing NOT VALID. PROBLEMA: No ha hecho bien la NonLing: se ha orientado por lugares/paisajes, en vez de la accion!"
+311	SpAD	female	21	2012-09-24	ling_nonling	4	3	no	35	Guillermo	9			"The NonLing task has to be discarded for following reason: Hopi_NonLing: This participant groups events according to the object that is being moved; so mostly scenes end up in pairs, wheel with wheel, chair. ADDITIONAL PROBLEM: This pt. mistakenly thought the objects had to be arranged according to similarity (cf. Retrospective Protocol). This was probably due to using the comparison with ""sorting objects on a table"" in the instructions. Consider whether the results have to be included in the analysis.with chair and so on (series 1). In her second series she seems to start grouping event types according to PATH: events of ascending, events of descending, events of going over the road/street, events of going into (series 2). Note that her overall map does not seem to reflect any underlying structure. Only clusters at the first or second level seem to have structure."
+312	SpAD	female	25	2012-09-25	ling_nonling	2	8	manually	23	Guillermo				"Popi_NonLing: No hay protocolo retrospectivo (olvido), pero si hay Screenshots multiples."
+313	SpAD	female	31	2012-09-25	ling_nonling	3	13	manually	18	Guillermo				
+314	SpAD	female	25	2012-09-26	nonling_ling	4	7	regular	19	Guillermo				
+315	SpAD	female	29	2012-09-27	nonling_ling	1	20	regular	35	Guillermo/Arantxa				"Beatriz se lo piensa mucho; en general tarda mucho para toda la tarea, y no parece encontrar un sistema bien establecido ni siquiera en la serie 3. Parece dudar a lo largo de toda la tarea, a veces se rie y comenta 'hm claro, es dificil'."
+316	SpAD	female	27	2012-09-27	nonling_ling	3	30	regular	18	Guillermo			Un caso claro en que los criterios utilizados para categorizar las escenas (en Popi_NonLing) influye las descripciones: Estefania sistematicamente mencionaba izq/dcha en sus descripciones.	
+317	SpAD	female	21	2012-09-27	nonling_ling	2	10	regular	22	Guillermo				
+318	SpAD	female	21	2012-10-01	ling_nonling	4	19	regular	23	Guillermo				
+319	SpAD	female	26	2012-10-02	nonling_ling	3	25	regular	17	Guillermo				
+320	SpAD	female	21	2012-10-03	nonling_ling	4	22	regular	18	Guillermo				
+321	SpAD	female	21	2012-10-03	nonling_ling	1	37	regular	20	Guillermo				
+322	SpAD	female	20	2012-10-04	ling_nonling	3	16	regular	20	Guillermo				
+323	SpAD	female	27	2012-10-04	ling_nonling	1	44	regular	30	Guillermo				
+401	SpAD	male	22	2012-09-19	ling_only	4	NA		13	Guillermo			"MOTION. Uses often 'desplazar(se)' which indicates caused (or volutary) motion per se. Very little MANNER (almost absent). Sometimes spectacular constructions, like dis_avagli. Also idiosyncratic use of 'en la que' for some type of aspectual information, maybe progressivity."	
+402	SpAD	male	22	2012-09-20	ling_only	2	NA		16	Guillermo				
+403	SpAD	male	23	2012-09-21	ling_only	2	NA		19	Guillermo			"Good example of misleading indexing. David cross-references videoclips thus calling for trouble when applying a vector space model (e.g. tgm_sactoi ('coche'), prm_boutoi ('arrastrarlo'))."	
+404	SpAD	male	20	2012-09-24	nonling_only	NA	1	no	29	Guillermo	9			"A Pablo le doy instrucciones muy explicitas sobre la similitud de las acciones, y no de detalles o paisajes. Pablo durante primera serie: ""La he liado; los estaba poniendo de una manera y los he puesto de otra y se ha liado"""
+411	SpAD	male	21	2012-09-25	ling_nonling	4	6	manually	21	Guillermo			"LingTask: al principio omite los objetos en algunas descripciones, p.ej. Baja la colina. Luego ya incluye mas elementos, de forma consecuente."	
+412	SpAD	male	22	2012-09-26	nonling_ling	2	31	regular	14	Guillermo				Popi_NonLing: a bit messy; probably a good example of a difficult case to interpret!
+413	SpAD	male	21	2012-09-26	nonling_ling	3	26	regular	16	Guillermo			"Unas descripciones muy claras y nitidas, como de Manual. En este caso parecia que la forma en que habia categorizado las escenas se reflejaba en las descripciones: mayor detalle, inclusion sistematica de parametros como forma de causar el movimiento del objeto (p.ej. empujar, arrastrar)"	
+414	SpAD	male	22	2012-09-27	nonling_ling	2	24	regular	35	Guillermo/Arantxa			 buena ilustracion de los efectos de la tarea nolinguistica en la linguistica; las descripciones que parecen reflejar muy bien las variables por las que se guió en la tarea no lingüística; el resultado es poco natural ya que p ej omite el nombre de los objetos.	Jose Ramon se queda pensando un rato largo antes de comenzar la serie 3.
+415	SpAD	male	21	2012-10-01	ling_nonling	2	35	regular	25	Guillermo				
+416	SpAD	male	22	2012-10-01	nonling_ling	1	39	regular	20	Guillermo				
+417	SpAD	male	21	2012-10-03	nonling_ling	4	23	regular	19	Guillermo				
+418	SpAD	male	28	2012-10-03	ling_nonling	3	21	regular	23	Guillermo				
+419	SpAD	male	20	2012-10-04	nonling_ling	2	56	regular	13	Guillermo				
+420	SpAD	male	27	2012-10-04	ling_nonling	2	42	regular	11	Guillermo			"PATH = MANNER. Mentions both components to the main extent, typically PATH in main verb and MANNER in subordinate/gerundif."	
+601	SpAD	male	23	2012-10-04	ling_nonling	4	41	regular	19	Guillermo		ABX: double check that results are coherent	"PATH >> MANNER. This participant offers quite a lot of PATH details, 'double-PATH' so to say (e.g. trd_brocol, prd_balnei)"	
+701	SwAD	female	27	2012-11-13 16.45.00	ling_nonling	1	2	regular	39	Guillermo				
+702	SwAD	female	22	2012-11-15 11.00.00	ling_nonling	3	4	regular	33	Guillermo				
+703	SwAD	female	33	2012-11-28 13.00.00	ling_nonling	1	6	regular	33	Guillermo		"Lisa laughs quite a lot; Has the feeling of being somewhat ridiculous, I guess."		"In this task, too, Lisa laughs embarassed. but actually when she explains how she did the task it is clear that she was having trouble sorting all the scenes according to the many criteria she had in mind. In other words, she was being serious when carrying out the task."
+704	SwAD	female	25	2012-11-30 10.00.00	ling_nonling	2	8	regular	33	Guillermo				
+705	SwAD	female	25	2012-11-30 12.30.00	ling_nonling	4	10	regular	38	Guillermo				
+706	SwAD	female	20	2012-11-30 14.00.00	ling_nonling	3	11	regular	33	Guillermo			"706 doesn't always mention manner (though she does most of the times), often she just uses 'go' (e.g. tge_chamai, pgd_valnei, tgt_cherou)"	
+707	SwAD	female	25	2012-12-03 12.00.00	ling_nonling	3	13	regular	36	Guillermo				
+708	SwAD	female	20	2012-12-04 15.00.00	nonling_ling	3	16	regular	22	Guillermo	9			"Linn uses the happiness as expressed in Hopi's face as a classification criterion throughout the series. It is not the only criterion, though. Cf. Retrosp. protocol."
+709	SwAD	female	21	2012-12-06 11.00.00	ling_nonling	2	17	regular	39	Guillermo				
+710	SwAD	female	24	2012-12-10 11.00.00	ling_nonling	3	21	regular	40	Guillermo				
+711	SwAD	female	25	2012-12-18 15.00.00	ling_nonling	4	33	regular	32	Guillermo				
+751	SwAD	female	22	2012-11-09 12.00.00	nonling_ling	2	1	regular	36	Guillermo	9	"NB. Camilla has done condition NonLing--Ling, but the e-prime output will say she did ""Hopi_NonLing_LAST_SW"". This is because I forgot to start AutoScreenCap before I started the ""Hopi_NonLing_FIRST_SW""-version, and did it after the familiarization block instead, interrupting the experiment and loading the ""LAST""-version the 2nd time. But the right order for her is NonLing--Ling"		"In the 2nd and 3rd series Camilla categorized the scenes depending on the landscape (winter-like, summer-like). She explains this in the RetrospProtocol"
+752	SwAD	female	24	2012-11-15 09.45.00	nonling_ling	3	3	regular	35	Guillermo				
+753	SwAD	female	22	2012-11-27 11.00.00	nonling_ling	1	5	regular	39	Guillermo		"NB. Frida has done condition NonLing--Ling, but the e-prime output will say she did ""Hopi_NonLing_LAST_SW"". This is because I forgot to start AutoScreenCap before I started the ""Hopi_NonLing_FIRST_SW""-version, and did it after the familiarization block instead, interrupting the experiment and loading the ""LAST""-version the 2nd time. But the right order for her is NonLing--Ling"		
+754	SwAD	female	28	2012-12-04 10.00.00	nonling_ling	2	15	regular	36	Guillermo				
+755	SwAD	female	28	2012-12-11 11.00.00	nonling_ling	4	22	regular	36	Guillermo				
+756	SwAD	female	25	2012-12-11 13.00.00	nonling_ling	4	23	regular	40	Guillermo				
+757	SwAD	female	21	2012-12-13 13.00.00	nonling_ling	3	25	regular	39	Guillermo				
+758	SwAD	female	24	2012-12-14 13.00.00	nonling_ling	2	28	regular	34	Guillermo				
+759	SwAD	female	25	2012-12-17 15.00.00	nonling_ling	1	29	regular	31	Guillermo				
+760	SwAD	female	26	2012-12-17 17.00.00	nonling_ling	3	30	regular	36	Guillermo				
+761	SwAD	female	25	2012-12-21 16.30.00	nonling_ling	4	40	regular	38	Guillermo	9			Elin sorts the stimuli anong other things according to Hopi's face expression while he is walking (series 2+3); she has a hard time trying to explain how she did arrange them during the retrospective protocol.
+762	SwAD	female	21	2013-12-16 12.00.00	nonling_ling	3	57	regular	39	Guillermo				
+763	SwAD	female	28	2013-12-19 16.00.00	nonling_ling	4	43	regular	36	Guillermo				
+801	SwAD	male	25	2012-12-04 13.00.00	ling_nonling	4	14	regular	40	Guillermo			801 is a perfect example of the Satellite-language type of description!	
+802	SwAD	male	22	2012-12-06 12.00.00	ling_nonling	1	18	regular	38	Guillermo				
+803	SwAD	male	24	2012-12-07 12.00.00	ling_nonling	4	19	regular	39	Guillermo			"803 described Hopi's expression on many occasions. He also cross-references the clips which will lead to significant noise in his data. His descriptions are funny though, he often uses the word pillemarisk."	
+804	SwAD	male	35	2012-12-14 10.00.00	ling_nonling	1	27	regular	32	Guillermo				
+805	SwAD	male	29	2012-12-17 10.00.00	ling_nonling	1	32	regular	38	Guillermo				
+806	SwAD	male	23	2012-12-18 16.00.00	ling_nonling	1	34	regular	36	Guillermo			"LingOrder should have been 4, but I mixed it up"	
+807	SwAD	male	26	2012-12-19 08.45.00	ling_nonling	2	35	regular	39	Guillermo				
+808	SwAD	male	32	2012-12-19 10.00.00	ling_nonling	2	36	regular	37	Guillermo				
+809	SwAD	male	34	2013-12-12 13.30.00	ling_nonling	2	38	regular	33	Guillermo				
+810	SwAD	male	23	2013-12-12 15.00.00	ling_nonling	4	41	regular	40	Guillermo				
+811	SwAD	male	23	2013-12-17 12.30.00	ling_nonling	2	42	regular	39	Guillermo				
+812	SwAD	male	22	2013-12-17 14.00.00	ling_nonling	3	45	regular	36	Guillermo				
+851	SwAD	male	28	2012-11-30 08.45.00	nonling_ling	4	7	regular	39	Guillermo				
+852	SwAD	male	20	2012-11-30 11.00.00	nonling_ling	3	9	regular	35	Guillermo				
+853	SwAD	male	25	2012-12-03 09.00.00	nonling_ling	4	12	regular	23	Guillermo				
+854	SwAD	male	34	2012-12-10 10.00.00	nonling_ling	1	20	regular	40	Guillermo				
+855	SwAD	male	25	2012-12-13 12.00.00	nonling_ling	2	24	regular	37	Guillermo				
+856	SwAD	male	31	2012-12-13 16.00.00	nonling_ling	3	26	regular	37	Guillermo				
+857	SwAD	male	35	2012-12-18 13.00.00	nonling_ling	2	31	regular	36	Guillermo				
+858	SwAD	male	25	2012-12-19 13.00.00	nonling_ling	1	37	regular	39	Guillermo				
+859	SwAD	male	24	2012-12-19 20.00.00	nonling_ling	1	39	regular	39	Guillermo				
+860	SwAD	male	30	2013-12-16 15.00.00	nonling_ling	2	51	regular	40	Guillermo				
+861	SwAD	male	29	2013-12-18 14.00.00	nonling_ling	2	56	regular	37	Guillermo				
 1001	SwAD	female		2011-11-01	ling_only	1				Tin		Collected by Tin Nov 2011		
 1004	SwAD	male		2011-11-01	ling_only	1				Tin		Collected by Tin Nov 2011		
 1005	SwAD	female		2011-11-01	ling_only	1				Tin		Collected by Tin Nov 2011		
-1006	SwAD	female		2011-11-01	ling_only	1				Tin		Collected by Tin Nov 2011	1006 has very compact and tight descriptions, perfectly exemplifying a Satellite-type language	
+1006	SwAD	female		2011-11-01	ling_only	1				Tin		Collected by Tin Nov 2011	"1006 has very compact and tight descriptions, perfectly exemplifying a Satellite-type language"	
 1007	SwAD	female		2011-11-01	ling_only	1				Tin		Collected by Tin Nov 2011	"1007 sometimes omits PATH information normally included (e.g. tgt_cherou, pgt_panrou, tre_cadmai); in those cases the semantic information is mostly MANNER"	
 1008	SwAD	male		2011-11-01	ling_only	2				Tin		Collected by Tin Nov 2011		
 1009	SwAD	female		2011-11-01	ling_only	2				Tin		Collected by Tin Nov 2011		
@@ -18,117 +132,3 @@ ID	Group	Gender	Age	Date	PopiTaskCondition	Popi_Ling_order	Popi_NonLing_RandomLi
 1019	SwAD	female		2011-11-01	ling_only	4				Tin		Collected by Tin Nov 2011		
 1020	SwAD	male		2011-11-01	ling_only	1				Tin		Collected by Tin Nov 2011		
 1021	SwAD	female		2011-11-01	ling_only	3				Tin		Collected by Tin Nov 2011		
-101	SpAD	female		2012-09-18	ling_only	2	NA		23	Guillermo				
-201	SpAD	male		2012-09-18	ling_only	1	NA		26	Guillermo				
-102	SpAD	female	22	2012-09-19	ling_only	2	NA		17	Guillermo				
-103	SpAD	female	25	2012-09-19	ling_only	4	NA		26	Guillermo				
-202	SpAD	male	27	2012-09-19	ling_only	1	NA		26	Guillermo		Came spontaneously, no e-mail contact	"Quite wordy descriptions; always mentions directions (left-to-right, right-to-left)"	
-302	SpAD	female		2012-09-19	ling_only	3	NA		21	Guillermo				
-303	SpAD	female	21	2012-09-19	ling_only	3	NA		16	Guillermo			"MANNER > PATH. systematically conveys MANNER information; when she just mentions one component, it is usually MANNER (e.g. pgd_valnei); at other times she conveys two MANNER components vs one PATH (e.g. pre_pnemai)."	
-401	SpAD	male	22	2012-09-19	ling_only	4	NA		13	Guillermo			MOTION. Uses often 'desplazar(se)' which indicates caused (or volutary) motion per se. Very little MANNER (almost absent). Sometimes spectacular constructions, like dis_avagli. Also idiosyncratic use of 'en la que' for some type of aspectual information, maybe progressivity.	
-104	SpAD	female	23	2012-09-20	ling_only	2	NA		20	Guillermo				
-304	SpAD	female	21	2012-09-20	ling_only	1	NA		26	Guillermo			PATH=MANNER. Neat descriptions, quite rich and complex. E.g. tge_chagro shows how the flexibility of Spanish allows for including quite a lot of semantic details	
-305	SpAD	female	29	2012-09-20	ling_only	3	NA		15	Guillermo			Comments sometimes on the clips in a rather funny and sweet way (e.g. tre_cadgro). Breaks against boundary-crossing constraint (e.g. pre_pnegro)	
-402	SpAD	male	22	2012-09-20	ling_only	2	NA		16	Guillermo				
-105	SpAD	female	25	2012-09-21	ling_only	4	NA		21	Guillermo			Buen ejemplo de PATH-only (aunque no sistematico)	
-106	SpAD	female	23	2012-09-21	ling_only	3	NA		14	Guillermo				
-203	SpAD	male	27	2012-09-21	ling_only	1	NA		24	Guillermo		"ACCEPTABLE PARTICIPANT? Aldin es nacido en Espana, pero de padres filipinos; vivio una temporada (2 anos?) en Filipinas durante su infancia; habla Ilocano"	Exclusively PATH-only descriptions (e.g. tge_chagro)	
-204	SpAD	male	33	2012-09-21	ling_only	3	NA		30	Guillermo		This participant asked extraordinarily many questions, before each task and also during the tasks	Excellent example of NOISY data. Many digresions and descriptions accompanied by thoughts and opinions on the videos (e.g. tre_cadgro). Interesting how he rectifies his description changing from PATH info to MANNER info (e.g. prm_boudun, tgd_malnei)	
-306	SpAD	female	21	2012-09-21	ling_only	4	NA		34	Guillermo				
-403	SpAD	male	23	2012-09-21	ling_only	2	NA		19	Guillermo			Good example of misleading indexing. David cross-references videoclips thus calling for trouble when applying a vector space model (e.g. tgm_sactoi ('coche'), prm_boutoi ('arrastrarlo')).	
-111	SpAD	female	22	2012-09-24	ling_nonling	1	2	no	20	Guillermo			Uso extrano del verbo 'elevar' / 'descender' (ver p.ej. pgm_paqtoi, trm_voitoi, tgm_sactoi, trd_brocol, prm_boutoi) y tambien de 'a través' (p.ej. tgd_malcol)	
-211	SpAD	male	25	2012-09-24	ling_nonling	1	1	no	19	Guillermo			PATH >> MANNER	
-311	SpAD	female	21	2012-09-24	ling_nonling	4	3	no	35	Guillermo	9			"The NonLing task has to be discarded for following reason: Hopi_NonLing: This participant groups events according to the object that is being moved; so mostly scenes end up in pairs, wheel with wheel, chair. ADDITIONAL PROBLEM: This pt. mistakenly thought the objects had to be arranged according to similarity (cf. Retrospective Protocol). This was probably due to using the comparison with ""sorting objects on a table"" in the instructions. Consider whether the results have to be included in the analysis.with chair and so on (series 1). In her second series she seems to start grouping event types according to PATH: events of ascending, events of descending, events of going over the road/street, events of going into (series 2). Note that her overall map does not seem to reflect any underlying structure. Only clusters at the first or second level seem to have structure."
-307	SpAD	female	20	2012-09-24	nonling_ling	4	1	no	20	Guillermo	9		Given order of Popi_task, the Ling task is not really valid either (see comment on PopiNonLing), but maybe interesting to analyse anyway	NonLing NOT VALID. PROBLEMA: No ha hecho bien la NonLing: se ha orientado por lugares/paisajes, en vez de la accion!
-404	SpAD	male	20	2012-09-24	nonling_only	NA	1	no	29	Guillermo	9			"A Pablo le doy instrucciones muy explicitas sobre la similitud de las acciones, y no de detalles o paisajes. Pablo durante primera serie: ""La he liado; los estaba poniendo de una manera y los he puesto de otra y se ha liado"""
-112	SpAD	female	21	2012-09-25	ling_nonling	3	4	no	19	Guillermo			Muy buen ejemplo de PATH-only (practicamente sistematico). También uso transitivo de 'entrar' y 'caer' (p.ej. pre_pnemai).	
-113	SpAD	female	21	2012-09-25	ling_nonling	3	11	manually	12	Guillermo			Bastantes expresiones (verbos o perífrasis) de MANNER	
-312	SpAD	female	25	2012-09-25	ling_nonling	2	8	manually	23	Guillermo				Popi_NonLing: No hay protocolo retrospectivo (olvido), pero si hay Screenshots multiples.
-313	SpAD	female	31	2012-09-25	ling_nonling	3	13	manually	18	Guillermo				
-411	SpAD	male	21	2012-09-25	ling_nonling	4	6	manually	21	Guillermo			LingTask: al principio omite los objetos en algunas descripciones, p.ej. Baja la colina. Luego ya incluye mas elementos, de forma consecuente.	
-115	SpAD	female	24	2012-09-26	ling_nonling	1	14	no	28	Guillermo				
-114	SpAD	female	23	2012-09-26	nonling_ling	4	40	regular	15	Guillermo				
-212	SpAD	male	20	2012-09-26	nonling_ling	2	15	regular	23	Guillermo				
-213	SpAD	male	19	2012-09-26	nonling_ling	3	9	manually	28	Guillermo				"Este pte era extremadamente rapido a la hora de ordenar las animaciones; desde pronto encontro un metodo y lo aplicaba sistematicamente y con gran rapidez. No parece que el metodo cambiara mucho a lo largo de las series (cf. tb RetroProt)"
-314	SpAD	female	25	2012-09-26	nonling_ling	4	7	regular	19	Guillermo				
-412	SpAD	male	22	2012-09-26	nonling_ling	2	31	regular	14	Guillermo				"Popi_NonLing: a bit messy; probably a good example of a difficult case to interpret!"
-413	SpAD	male	21	2012-09-26	nonling_ling	3	26	regular	16	Guillermo			Unas descripciones muy claras y nitidas, como de Manual. En este caso parecia que la forma en que habia categorizado las escenas se reflejaba en las descripciones: mayor detalle, inclusion sistematica de parametros como forma de causar el movimiento del objeto (p.ej. empujar, arrastrar)	
-214	SpAD	male	23	2012-09-27	excluded	2*	38*	regular	17	Guillermo	99	PopiTask NOT VALID	Failed to record sound, i.e. no description of clips	The data for this task is complete but the use I can make of it is restricted since there is no audio recording for PopiLing (cf. Comments_PopiLing). Thus I will not be able to examine any relation between Ling and NonLing Popi tasks.
-117	SpAD	female	22	2012-09-27	ling_nonling	1	27	no	20	Guillermo				Forgot Screenshots! (there is nothing at all)
-215	SpAD	male	21	2012-09-27	ling_nonling	2	38	regular	22	Guillermo				
-116	SpAD	female	20	2012-09-27	nonling_ling	2	28	regular	14	Guillermo				
-315	SpAD	female	29	2012-09-27	nonling_ling	1	20	regular	35	Guillermo				"Beatriz se lo piensa mucho; en general tarda mucho para toda la tarea, y no parece encontrar un sistema bien establecido ni siquiera en la serie 3. Parece dudar a lo largo de toda la tarea, a veces se rie y comenta 'hm claro, es dificil'."
-316	SpAD	female	27	2012-09-27	nonling_ling	3	30	regular	18	Guillermo			Un caso claro en que los criterios utilizados para categorizar las escenas (en Popi_NonLing) influye las descripciones: Estefania sistematicamente mencionaba izq/dcha en sus descripciones.	
-317	SpAD	female	21	2012-09-27	nonling_ling	2	10	regular	22	Guillermo				
-414	SpAD	male	22	2012-09-27	nonling_ling	2	24	regular	35	Guillermo				Jose Ramon se queda pensando un rato largo antes de comenzar la serie 3.
-216	SpAD	male	21	2012-10-01	ling_nonling	2	17	regular	20	Guillermo				
-217	SpAD	male	25	2012-10-01	ling_nonling	1	32	regular	20	Guillermo				
-318	SpAD	female	21	2012-10-01	ling_nonling	4	19	regular	23	Guillermo				
-415	SpAD	male	21	2012-10-01	ling_nonling	2	35	regular	25	Guillermo				
-118	SpAD	female	23	2012-10-01	nonling_ling	4	12	regular	18	Guillermo				
-416	SpAD	male	22	2012-10-01	nonling_ling	1	39	regular	20	Guillermo				
-119	SpAD	female	28	2012-10-02	ling_nonling	4	33	regular	13	Guillermo				
-120	SpAD	female	20	2012-10-02	ling_nonling	4	34	regular	25	Guillermo		"Aurea ha vivido 6 agnos en Mallorca (donde se habla catalan) y 11 en Galicia (donde se habla gallego); ninguno de los dos idiomas parece ser dominante en cuanto al uso; pero en el gallego indica un dominio =5 para todas las competencias. En su defensa hay que decir que no ha residido en el extranjero mas de 6 meses."		
-319	SpAD	female	26	2012-10-02	nonling_ling	3	25	regular	17	Guillermo				
-218	SpAD	male	22	2012-10-03	ling_nonling	2	36	regular	19	Guillermo				
-418	SpAD	male	28	2012-10-03	ling_nonling	3	21	regular	23	Guillermo				
-121	SpAD	female	23	2012-10-03	nonling_ling	1	29	regular	29	Guillermo				
-219	SpAD	male	28	2012-10-03	nonling_ling	1	5	regular	25	Guillermo		A Oscar le entra una risa tonta a veces y parece estar un poco despistado a veces		A Oscar le tengo que explicar la tarea alguna vez mas de lo normal y el comenta varias veces: 'la he liado, es que soy un poco lerdin'. Su serie 1 parece francamente dificil de interpretar
-320	SpAD	female	21	2012-10-03	nonling_ling	4	22	regular	18	Guillermo				
-321	SpAD	female	21	2012-10-03	nonling_ling	1	37	regular	20	Guillermo				
-417	SpAD	male	21	2012-10-03	nonling_ling	4	23	regular	19	Guillermo				
-122	SpAD	female	24	2012-10-04	ling_nonling	1	18	regular	19	Guillermo				
-322	SpAD	female	20	2012-10-04	ling_nonling	3	16	regular	20	Guillermo				
-323	SpAD	female	27	2012-10-04	ling_nonling	1	44	regular	30	Guillermo				
-420	SpAD	male	27	2012-10-04	ling_nonling	2	42	regular	11	Guillermo			PATH = MANNER. Mentions both components to the main extent, typically PATH in main verb and MANNER in subordinate/gerundif.	
-601	SpAD	male	23	2012-10-04	ling_nonling	4	41	regular	19	Guillermo		ABX: double check that results are coherent	PATH >> MANNER. This participant offers quite a lot of PATH details, 'double-PATH' so to say (e.g. trd_brocol, prd_balnei)	
-123	SpAD	female	21	2012-10-04	nonling_ling	3	57	regular	26	Guillermo				
-220	SpAD	male	20	2012-10-04	nonling_ling	2	51	regular	17	Guillermo				
-419	SpAD	male	20	2012-10-04	nonling_ling	2	56	regular	13	Guillermo				
-751	SwAD	female	22	2012-11-09 12.00.00	nonling_ling	2	1	regular	36	Guillermo	9	"NB. Camilla has done condition NonLing--Ling, but the e-prime output will say she did ""Hopi_NonLing_LAST_SW"". This is because I forgot to start AutoScreenCap before I started the ""Hopi_NonLing_FIRST_SW""-version, and did it after the familiarization block instead, interrupting the experiment and loading the ""LAST""-version the 2nd time. But the right order for her is NonLing--Ling"		In the 2nd and 3rd series Camilla categorized the scenes depending on the landscape (winter-like, summer-like). She explains this in the RetrospProtocol
-701	SwAD	female	27	2012-11-13 16.45.00	ling_nonling	1	2	regular	39	Guillermo				
-752	SwAD	female	24	2012-11-15 09.45.00	nonling_ling	3	3	regular	35	Guillermo				
-702	SwAD	female	22	2012-11-15 11.00.00	ling_nonling	3	4	regular	33	Guillermo				
-753	SwAD	female	22	2012-11-27 11.00.00	nonling_ling	1	5	regular	39	Guillermo		"NB. Frida has done condition NonLing--Ling, but the e-prime output will say she did ""Hopi_NonLing_LAST_SW"". This is because I forgot to start AutoScreenCap before I started the ""Hopi_NonLing_FIRST_SW""-version, and did it after the familiarization block instead, interrupting the experiment and loading the ""LAST""-version the 2nd time. But the right order for her is NonLing--Ling"		
-703	SwAD	female	33	2012-11-28 13.00.00	ling_nonling	1	6	regular	33	Guillermo		"Lisa laughs quite a lot; Has the feeling of being somewhat ridiculous, I guess."		In this task, too, Lisa laughs embarassed. but actually when she explains how she did the task it is clear that she was having trouble sorting all the scenes according to the many criteria she had in mind. In other words, she was being serious when carrying out the task.
-851	SwAD	male	28	2012-11-30 08.45.00	nonling_ling	4	7	regular	39	Guillermo				
-704	SwAD	female	25	2012-11-30 10.00.00	ling_nonling	2	8	regular	33	Guillermo				
-852	SwAD	male	20	2012-11-30 11.00.00	nonling_ling	3	9	regular	35	Guillermo				
-705	SwAD	female	25	2012-11-30 12.30.00	ling_nonling	4	10	regular	38	Guillermo				
-706	SwAD	female	20	2012-11-30 14.00.00	ling_nonling	3	11	regular	33	Guillermo			706 doesn't always mention manner (though she does most of the times), often she just uses 'go' (e.g. tge_chamai, pgd_valnei, tgt_cherou)	
-853	SwAD	male	25	2012-12-03 09.00.00	nonling_ling	4	12	regular	23	Guillermo				
-707	SwAD	female	25	2012-12-03 12.00.00	ling_nonling	3	13	regular	36	Guillermo				
-754	SwAD	female	28	2012-12-04 10.00.00	nonling_ling	2	15	regular	36	Guillermo				
-801	SwAD	male	25	2012-12-04 13.00.00	ling_nonling	4	14	regular	40	Guillermo			801 is a perfect example of the Satellite-language type of description!	
-708	SwAD	female	20	2012-12-04 15.00.00	ling_nonling	3	16	regular	22	Guillermo	9			Linn uses the happiness as expressed in Hopi's face as a classification criterion throughout the series. It is not the only criterion, though. Cf. Retrosp. protocol.
-709	SwAD	female	21	2012-12-06 11.00.00	ling_nonling	2	17	regular	39	Guillermo				
-802	SwAD	male	22	2012-12-06 12.00.00	ling_nonling	1	18	regular	38	Guillermo				
-803	SwAD	male	24	2012-12-07 12.00.00	ling_nonling	4	19	regular	39	Guillermo			803 described Hopi's expression on many occasions. He also cross-references the clips which will lead to significant noise in his data. His descriptions are funny though, he often uses the word pillemarisk.	
-854	SwAD	male	34	2012-12-10 10.00.00	nonling_ling	1	20	regular	40	Guillermo				
-710	SwAD	female	24	2012-12-10 11.00.00	ling_nonling	3	21	regular	40	Guillermo				
-755	SwAD	female	28	2012-12-11 11.00.00	nonling_ling	4	22	regular	36	Guillermo				
-756	SwAD	female	25	2012-12-11 13.00.00	nonling_ling	4	23	regular	40	Guillermo				
-855	SwAD	male	25	2012-12-13 12.00.00	nonling_ling	2	24	regular	37	Guillermo				
-757	SwAD	female	21	2012-12-13 13.00.00	nonling_ling	3	25	regular	39	Guillermo				
-856	SwAD	male	31	2012-12-13 16.00.00	nonling_ling	3	26	regular	37	Guillermo				
-804	SwAD	male	35	2012-12-14 10.00.00	ling_nonling	1	27	regular	32	Guillermo				
-758	SwAD	female	24	2012-12-14 13.00.00	nonling_ling	2	28	regular	34	Guillermo				
-805	SwAD	male	29	2012-12-17 10.00.00	ling_nonling	1	32	regular	38	Guillermo				
-759	SwAD	female	25	2012-12-17 15.00.00	nonling_ling	1	29	regular	31	Guillermo				
-760	SwAD	female	26	2012-12-17 17.00.00	nonling_ling	3	30	regular	36	Guillermo				
-857	SwAD	male	35	2012-12-18 13.00.00	nonling_ling	2	31	regular	36	Guillermo				
-711	SwAD	female	25	2012-12-18 15.00.00	ling_nonling	4	33	regular	32	Guillermo				
-806	SwAD	male	23	2012-12-18 16.00.00	ling_nonling	1	34	regular	36	Guillermo			LingOrder should have been 4, but I mixed it up	
-807	SwAD	male	26	2012-12-19 08.45.00	ling_nonling	2	35	regular	39	Guillermo				
-808	SwAD	male	32	2012-12-19 10.00.00	ling_nonling	2	36	regular	37	Guillermo				
-858	SwAD	male	25	2012-12-19 13.00.00	nonling_ling	1	37	regular	39	Guillermo				
-859	SwAD	male	24	2012-12-19 20.00.00	nonling_ling	1	39	regular	39	Guillermo				
-761	SwAD	female	25	2012-12-21 16.30.00	nonling_ling	4	40	regular	38	Guillermo	9			"Elin sorts the stimuli anong other things according to Hopi's face expression while he is walking (series 2+3); she has a hard time trying to explain how she did arrange them during the retrospective protocol."
-809	SwAD	male	34	2013-12-12 13.30.00	ling_nonling	2	38	regular	33	Guillermo				
-810	SwAD	male	23	2013-12-12 15.00.00	ling_nonling	4	41	regular	40	Guillermo				
-762	SwAD	female	21	2013-12-16 12.00.00	nonling_ling	3	57	regular	39	Guillermo				
-860	SwAD	male	30	2013-12-16 15.00.00	nonling_ling	2	51	regular	40	Guillermo				
-811	SwAD	male	23	2013-12-17 12.30.00	ling_nonling	2	42	regular	39	Guillermo				
-812	SwAD	male	22	2013-12-17 14.00.00	ling_nonling	3	45	regular	36	Guillermo				
-861	SwAD	male	29	2013-12-18 14.00.00	nonling_ling	2	56	regular	37	Guillermo				
-763	SwAD	female	28	2013-12-19 16.00.00	nonling_ling	4	43	regular	36	Guillermo				
