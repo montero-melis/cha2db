@@ -37,7 +37,8 @@ def dbPopul(dbName, subject_info=None, ling_meta=None, ling_data=None, nonling_d
         screenshots_nonling TEXT,
         OQPT_score REAL,
         experimenter TEXT,
-        exclude INTEGER,
+        exclude_nonling INTEGER,
+        exclude_ling INTEGER,
         comments_general TEXT,
         comments_Ling TEXT,
         comments_Nonling TEXT
@@ -124,7 +125,7 @@ def dbPopul(dbName, subject_info=None, ling_meta=None, ling_data=None, nonling_d
                 uni_row = []
                 for field in row:
                     uni_row.append(unicode(field,'utf-8')) # this is needed to get strings into unicode
-                c.execute('INSERT INTO Participant VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', uni_row)
+                c.execute('INSERT INTO Participant VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', uni_row)
 
 
     # data from linguistic task
